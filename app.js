@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
 const app = express();
 
 // const myLogger = require("./logger");
@@ -7,6 +8,11 @@ const app = express();
 
 // Dev logging for incoming requests
 app.use(morgan("dev"));
+
+// parser urlencoded body, like "form"
+app.use(bodyParser.urlencoded({ extended: false }));
+// parser content-type:application/json
+app.use(bodyParser.json());
 
 // router files
 var productRouter = require("./api/router/products");
