@@ -14,6 +14,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parser content-type:application/json
 app.use(bodyParser.json());
 
+// cors enabling
+app.use((req, res, next) => {
+	res.append("Access-Control-Allow-Origin", "*");
+	res.append("Access-Control-Allow-Headers", "Content-type");
+	if (req.method === "OPTIONS") {
+		res.append("Access-Allow-Control-Methods", "PUT,DELETE,POST,PATCH,GET");
+		res.sendStatus(200);
+	} else {
+		next();
+	}
+});
+
 // router files
 var productRouter = require("./api/router/products");
 var orderRouter = require("./api/router/orders");
