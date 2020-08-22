@@ -14,7 +14,11 @@ router.get("/:orderID", checkUserInput, function (req, res) {
 	res.status(200).json({ method: `${req.method}`, msg: `Get the order No ${orderID}.` });
 });
 router.post("/", function (req, res) {
-	res.status(201).json({ method: `${req.method}`, msg: "Create a new order." });
+	let order = {
+		productID: req.body.productId,
+		quantity: req.body.quantity,
+	};
+	res.status(201).json({ method: `${req.method}`, msg: "Create a new order.", createdOrder: order });
 });
 router.put("/:orderID", checkUserInput, function (req, res) {
 	let orderID = req.params.orderID;
