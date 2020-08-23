@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const checkUserInput = (req, res, next) => {
-    const { orderID } = req.params;
-    if (!/^\d+$/.test(orderID))
+    const { productID } = req.params;
+    if (!/^\d+$/.test(productID))
         res.status(404).json({ method: `${req.method}`, msg: 'The resource can not be found.' });
     else next();
 };

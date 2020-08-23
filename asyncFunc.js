@@ -1,5 +1,5 @@
 const saveProduct = function (product) {
-    console.log('S aving product...');
+    console.log('Saving product...');
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             const savedProduct = product;
