@@ -1,0 +1,15 @@
+{
+    "extends": ["airbnb-base", "plugin:prettier/recommended"],
+    "parserOptions": {
+        "ecmaVersion": 2015
+    },
+    "parser": "babel-eslint",
+    "rules": {
+        "no-unused-vars": ["warn", { "argsIgnorePattern": "next|reject" }],
+        "no-console": "off",
+        "func-names": "off",
+        "object-shorthand": "off",
+        "import/newline-after-import": "off",
+        "no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }]
+    }
+}
