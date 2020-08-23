@@ -1,12 +1,12 @@
 const saveProduct = function (product) {
-  console.log('S aving product...');
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      const savedProduct = product;
-      savedProduct.status = 'saved';
-      resolve(savedProduct);
-    }, 3000);
-  });
+    console.log('S aving product...');
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            const savedProduct = product;
+            savedProduct.status = 'saved';
+            resolve(savedProduct);
+        }, 3000);
+    });
 };
 
 // (function main() {
@@ -21,10 +21,10 @@ const saveProduct = function (product) {
 // })();
 
 (async function main() {
-  const product = {
-    name: 'Nike 2000',
-    price: '30',
-  };
-  const savedProduct = await saveProduct(product);
-  console.log(savedProduct);
+    const product = {
+        name: 'Nike 2000',
+        price: '30',
+    };
+    const savedProduct = await saveProduct(product);
+    console.log(savedProduct);
 })();
