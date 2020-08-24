@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const Product = require('../../db/model/product');
 
 const checkUserInput = (req, res, next) => {
     const { productID } = req.params;
@@ -17,17 +19,25 @@ router.get('/:productID', checkUserInput, function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    console.log(req.body);
-    const product = {
+    const product = new Product({
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         price: req.body.price,
-    };
-
-    res.status(201).json({
-        method: `${req.method}`,
-        msg: 'Create a new product.',
-        createdProduct: product,
     });
+    product
+        .save()
+        .then((result) =>
+            res.status(201).json({
+                msg: `New product created.`,
+                createdProduct: result,
+            })
+        )
+        .catch((e) =>
+            res.status(400).json({
+                msg: `Failed to create product.`,
+                error: e,
+            })
+        );
 });
 
 router.put('/:productID', checkUserInput, function (req, res) {
