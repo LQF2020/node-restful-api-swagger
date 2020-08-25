@@ -1,16 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const checkUserInput = (req, res, next) => {
-    const { orderID } = req.params;
-    if (!/^\d+$/.test(orderID))
-        res.status(404).json({ method: `${req.method}`, msg: 'The resource can not be found.' });
-    else next();
-};
 router.get('/', function (req, res) {
     res.status(200).json({ method: `${req.method}`, msg: 'Get all orders.' });
 });
-router.get('/:orderID', checkUserInput, function (req, res) {
+router.get('/:orderID', function (req, res) {
     const { orderID } = req.params;
     res.status(200).json({ method: `${req.method}`, msg: `Get the order No ${orderID}.` });
 });
@@ -25,11 +19,11 @@ router.post('/', function (req, res) {
         createdOrder: order,
     });
 });
-router.put('/:orderID', checkUserInput, function (req, res) {
+router.put('/:orderID', function (req, res) {
     const { orderID } = req.params;
     res.status(200).json({ method: `${req.method}`, msg: `Update the order No ${orderID}.` });
 });
-router.delete('/:orderID', checkUserInput, function (req, res) {
+router.delete('/:orderID', function (req, res) {
     const { orderID } = req.params;
     res.status(200).json({ method: `${req.method}`, msg: `Delete the order No ${orderID}.` });
 });

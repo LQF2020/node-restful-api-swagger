@@ -3,19 +3,40 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Product = require('../../db/model/product');
 
-const checkUserInput = (req, res, next) => {
-    const { productID } = req.params;
-    if (!/^\d+$/.test(productID))
-        res.status(404).json({ method: `${req.method}`, msg: 'The resource can not be found.' });
-    else next();
-};
-
 router.get('/', function (req, res) {
-    res.status(200).json({ method: `${req.method}`, msg: 'Get all products.' });
+    Product.find()
+        .exec()
+        .then((docs) => {
+            res.status(200).json({
+                createdProductList: docs,
+            });
+        })
+        .catch((e) =>
+            res.status(500).json({
+                error: e,
+            })
+        );
 });
-router.get('/:productID', checkUserInput, function (req, res) {
+router.get('/:productID', function (req, res) {
     const { productID } = req.params;
-    res.status(200).json({ method: `${req.method}`, msg: `Get the product No ${productID}.` });
+    Product.findById(productID)
+        .exec()
+        .then((doc) => {
+            if (doc) {
+                res.status(200).json({
+                    createdProduct: doc,
+                });
+            } else {
+                res.status(404).json({
+                    msg: 'No valid entry found.',
+                });
+            }
+        })
+        .catch((e) =>
+            res.status(500).json({
+                error: e,
+            })
+        );
 });
 
 router.post('/', function (req, res) {
@@ -33,20 +54,38 @@ router.post('/', function (req, res) {
             })
         )
         .catch((e) =>
-            res.status(400).json({
-                msg: `Failed to create product.`,
+            res.status(500).json({
                 error: e,
             })
         );
 });
 
-router.put('/:productID', checkUserInput, function (req, res) {
+router.patch('/:productID', function (req, res) {
     const { productID } = req.params;
-    res.status(200).json({ method: `${req.method}`, msg: `Update the product No ${productID}.` });
+    const updateOps = req.body;
+    Product.update({ _id: productID }, { $set: updateOps })
+        .exec()
+        .then((result) => {
+            res.status(200).json({ updatedProduct: result });
+        })
+        .catch((e) => {
+            res.status(500).json({ error: e });
+        });
 });
-router.delete('/:productID', checkUserInput, function (req, res) {
+router.delete('/:productID', function (req, res) {
     const { productID } = req.params;
-    res.status(200).json({ method: `${req.method}`, msg: `Delete the product No ${productID}.` });
+    Product.remove({ _id: productID })
+        .exec()
+        .then((result) => {
+            if (result) {
+                res.status(200).json({ deletedProduct: result });
+            } else {
+                res.status(404).json({
+                    msg: 'No valid entry found.',
+                });
+            }
+        })
+        .catch((e) => res.status(500).json({ error: e }));
 });
 
 module.exports = router;
