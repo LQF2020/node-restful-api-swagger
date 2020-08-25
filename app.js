@@ -15,7 +15,7 @@ app.use(morgan('dev'));
 // parser urlencoded body, like "form"
 app.use(
     bodyParser.urlencoded({
-        extended: false,
+        extended: false
     })
 );
 // parser content-type:application/json
@@ -52,7 +52,7 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.json({
         errCode: err.status,
-        error: err.message,
+        error: err.message
     });
 });
 

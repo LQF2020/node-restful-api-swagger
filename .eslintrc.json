@@ -10,6 +10,7 @@
         "func-names": "off",
         "object-shorthand": "off",
         "import/newline-after-import": "off",
-        "no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }]
+        "no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
+        "no-underscore-dangle": "off"
     }
 }
