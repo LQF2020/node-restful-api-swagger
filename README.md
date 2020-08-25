@@ -10,7 +10,7 @@ This project is created for self-learning purpose, following the instructions by
 -   Express.js
 -   CORS
 -   Restful API
--   MongoDB
+-   MongoDB Atlas
 -   Mongoose
 -   Authencation
 
@@ -29,7 +29,19 @@ cd node-restful-shop
 npm install
 ```
 
-3. Start project
+3. Create your cloud mongoDB account, go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
+   After creating your cloud db server, follow step 4 to link this app to cloud DB.
+
+4. Create Environment configuration file `.env`, under your root directory.
+
+```
+DB_HOST=%YOUR_DB_HOST%
+DB_USER=%YOUR_DB_USER_NAME%
+DB_PASS=%YOUR_DB_PASSWORD%
+DB_NAME=%YOUR_DB_NAME%
+```
+
+4. Start project
 
 ```
 npm start
