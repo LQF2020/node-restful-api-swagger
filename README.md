@@ -12,4 +12,4 @@ This project is created for self-learning purpose, following the instructions by
 -   Restful API
 -   MongoDB
 -   Mongoose
--   Authencation.
+-   Authencation
