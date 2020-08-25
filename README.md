@@ -13,3 +13,24 @@ This project is created for self-learning purpose, following the instructions by
 -   MongoDB
 -   Mongoose
 -   Authencation
+
+## How to use
+
+1. Clone Project into your local machine
+
+```
+git clone https://github.com/LQF2020/node-restful-shop.git
+```
+
+2. Go into project folder and install packages.
+
+```
+cd node-restful-shop
+npm install
+```
+
+3. Start project
+
+```
+npm start
+```
