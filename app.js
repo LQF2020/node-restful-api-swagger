@@ -34,8 +34,8 @@ app.use((req, res, next) => {
 });
 
 // router files
-const productRouter = require('./api/router/products');
-const orderRouter = require('./api/router/orders');
+const productRouter = require('./api/router/product');
+const orderRouter = require('./api/router/order');
 
 app.use('/products', productRouter);
 app.use('/orders', orderRouter);
