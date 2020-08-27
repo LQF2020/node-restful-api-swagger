@@ -7,7 +7,7 @@ const dbConn = require('./db/connect');
 
 dbConn();
 
-// const myLogger = require("./logger");
+// const myLogger = require("./middlewares/logger");
 // app.use(myLogger);
 // Dev logging for incoming requests
 app.use(morgan('dev'));
