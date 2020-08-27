@@ -11,6 +11,7 @@
         "object-shorthand": "off",
         "import/newline-after-import": "off",
         "no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
-        "no-underscore-dangle": "off"
+        "no-underscore-dangle": "off",
+        "no-useless-escape": "off"
     }
 }
