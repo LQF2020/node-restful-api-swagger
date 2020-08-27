@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const checkAuth = require('../../middlewares/checkAuth');
 const {
     getAllOrders,
     getOrder,
@@ -10,8 +11,8 @@ const {
 
 router.get('/', getAllOrders);
 router.get('/:orderID', getOrder);
-router.post('/', createOrder);
-router.patch('/:orderID', updateOrder);
-router.delete('/:orderID', deleteOrder);
+router.post('/', checkAuth, createOrder);
+router.patch('/:orderID', checkAuth, updateOrder);
+router.delete('/:orderID', checkAuth, deleteOrder);
 
 module.exports = router;

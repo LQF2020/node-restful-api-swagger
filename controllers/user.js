@@ -1,7 +1,18 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require('../db/model/user');
 const saltRound = 10;
+const { JWT_SECRET } = process.env;
+
+const createToken = (user) => {
+    const payLoad = {
+        email: user.email
+    };
+    const config = { expiresIn: '1h' };
+
+    return jwt.sign(payLoad, JWT_SECRET, config);
+};
 
 const userController = {
     signUp(req, res) {
@@ -33,8 +44,10 @@ const userController = {
                     bcrypt
                         .compare(req.body.password, userHashPassword)
                         .then((matched) => {
-                            if (matched) res.status(401).json({ msg: 'Login Success.' });
-                            else res.status(401).json({ msg: 'Login failed.' });
+                            if (matched) {
+                                const token = createToken(storedUser);
+                                res.status(401).json({ msg: 'Login Success.', token: token });
+                            } else res.status(401).json({ msg: 'Login failed.' });
                         })
                         .catch((e) => res.status(500).json({ error: e }));
                 } else {
