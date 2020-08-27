@@ -6,17 +6,17 @@ const orderController = {
         Order.find()
             .select('-__v')
             .exec()
-            .then((docs) => {
+            .then((items) => {
                 const response = {
-                    count: docs.length,
-                    orders: docs.map((item) => {
+                    count: items.length,
+                    orders: items.map((item) => {
                         return {
                             _id: item._id,
                             productID: item.productID,
                             quantity: item.quantity,
                             request: {
                                 type: 'GET',
-                                url: `http://127.0.0.1:3000/orders/${item._id}`
+                                url: `${process.env.BASE_URL}/orders/${item._id}`
                             }
                         };
                     })
@@ -34,9 +34,9 @@ const orderController = {
         Order.findById(orderID)
             .select('-__v')
             .exec()
-            .then((doc) => {
-                if (doc) {
-                    res.status(200).json(doc);
+            .then((item) => {
+                if (item) {
+                    res.status(200).json(item);
                 } else {
                     res.status(404).json({
                         msg: 'No valid entry found.'
@@ -57,16 +57,16 @@ const orderController = {
         });
         order
             .save()
-            .then((result) => {
+            .then((item) => {
                 res.status(201).json({
                     msg: `New order created.`,
                     createdOrder: {
-                        _id: result._id,
-                        productID: result.productID,
-                        quantity: result.quantity,
+                        _id: item._id,
+                        productID: item.productID,
+                        quantity: item.quantity,
                         request: {
                             type: 'GET',
-                            url: `http://127.0.0.1:3000/orders/${result._id}`
+                            url: `${process.env.BASE_URL}/orders/${item._id}`
                         }
                     }
                 });
@@ -81,7 +81,7 @@ const orderController = {
             .then((result) => {
                 res.status(200).json({
                     msg: 'Order updated successfully.',
-                    request: { type: 'GET', url: `http://127.0.0.1:3000/orders/${orderID}` }
+                    request: { type: 'GET', url: `${process.env.BASE_URL}/orders/${orderID}` }
                 });
             })
             .catch((e) => {
@@ -96,7 +96,7 @@ const orderController = {
                 if (result.deletedCount >= 1) {
                     res.status(200).json({
                         msg: 'Order deleted successfully.',
-                        request: { type: 'GET', url: `http://127.0.0.1:3000/orders` }
+                        request: { type: 'GET', url: `${process.env.BASE_URL}/orders` }
                     });
                 } else {
                     res.status(404).json({

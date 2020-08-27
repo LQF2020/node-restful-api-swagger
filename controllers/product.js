@@ -6,17 +6,18 @@ const productController = {
         Product.find()
             .select('-__v')
             .exec()
-            .then((docs) => {
+            .then((items) => {
                 const response = {
-                    count: docs.length,
-                    products: docs.map((item) => {
+                    count: items.length,
+                    products: items.map((item) => {
                         return {
                             _id: item._id,
                             name: item.name,
                             price: item.price,
+                            imgURL: item.imgURL,
                             request: {
                                 type: 'GET',
-                                url: `http://127.0.0.1:3000/products/${item._id}`
+                                url: `${process.env.BASE_URL}/products/${item._id}`
                             }
                         };
                     })
@@ -34,9 +35,9 @@ const productController = {
         Product.findById(productID)
             .select('-__v')
             .exec()
-            .then((doc) => {
-                if (doc) {
-                    res.status(200).json(doc);
+            .then((item) => {
+                if (item) {
+                    res.status(200).json(item);
                 } else {
                     res.status(404).json({
                         msg: 'No valid entry found.'
@@ -54,22 +55,22 @@ const productController = {
             _id: new mongoose.Types.ObjectId(),
             name: req.body.name,
             price: req.body.price,
-            imgURL: req.file.path
+            imgURL: `${process.env.BASE_URL}/uploads/productImages/${req.file.filename}`
         });
-        console.log(req.file);
 
         product
             .save()
-            .then((result) => {
+            .then((item) => {
                 res.status(201).json({
                     msg: `New product created.`,
                     createdProduct: {
-                        _id: result._id,
-                        name: result.name,
-                        price: result.price,
+                        _id: item._id,
+                        name: item.name,
+                        price: item.price,
+                        imgURL: item.imgURL,
                         request: {
                             type: 'GET',
-                            url: `http://127.0.0.1:3000/products/${result._id}`
+                            url: `${process.env.BASE_URL}/products/${item._id}`
                         }
                     }
                 });
@@ -86,10 +87,9 @@ const productController = {
         Product.update({ _id: productID }, { $set: updateOps })
             .exec()
             .then((result) => {
-                console.log(result);
                 res.status(200).json({
                     msg: 'Product updated successfully.',
-                    request: { type: 'GET', url: `http://127.0.0.1:3000/products/${productID}` }
+                    request: { type: 'GET', url: `${process.env.BASE_URL}/products/${productID}` }
                 });
             })
             .catch((e) => {
@@ -104,7 +104,7 @@ const productController = {
                 if (result.deletedCount >= 1) {
                     res.status(200).json({
                         msg: 'Product deleted successfully.',
-                        request: { type: 'GET', url: `http://127.0.0.1:3000/products` }
+                        request: { type: 'GET', url: `${process.env.BASE_URL}/products` }
                     });
                 } else {
                     res.status(404).json({

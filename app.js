@@ -7,11 +7,9 @@ const dbConn = require('./db/connect');
 
 dbConn();
 
-// const myLogger = require("./middlewares/logger");
-// app.use(myLogger);
-// Dev logging for incoming requests
 app.use(morgan('dev'));
-app.use(express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
+
 // parser urlencoded body, like "form"
 app.use(
     bodyParser.urlencoded({
