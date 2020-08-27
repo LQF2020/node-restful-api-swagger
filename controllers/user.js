@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const User = require('../db/model/user');
-
+const saltRound = 10;
 const userController = {
     signUp(req, res) {
         const user = new User({
             _id: new mongoose.Types.ObjectId(),
             email: req.body.email,
-            password: req.body.password
+            password: bcrypt.hashSync(req.body.password, saltRound)
         });
         user.save()
             .select('-__v')
