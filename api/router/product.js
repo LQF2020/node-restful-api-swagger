@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const formParser = require('../../middlewares/formParser');
 const {
     getAllProducts,
     getProduct,
@@ -10,7 +11,7 @@ const {
 
 router.get('/', getAllProducts);
 router.get('/:productID', getProduct);
-router.post('/', createProduct);
+router.post('/', formParser.single('productImage'), createProduct);
 router.patch('/:productID', updateProduct);
 router.delete('/:productID', deleteProduct);
 

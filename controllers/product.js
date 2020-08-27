@@ -53,8 +53,11 @@ const productController = {
         const product = new Product({
             _id: new mongoose.Types.ObjectId(),
             name: req.body.name,
-            price: req.body.price
+            price: req.body.price,
+            imgURL: req.file.path
         });
+        console.log(req.file);
+
         product
             .save()
             .then((result) => {

@@ -11,7 +11,7 @@ dbConn();
 // app.use(myLogger);
 // Dev logging for incoming requests
 app.use(morgan('dev'));
-
+app.use(express.static('uploads'));
 // parser urlencoded body, like "form"
 app.use(
     bodyParser.urlencoded({
@@ -51,7 +51,6 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.json({
-        errCode: err.status,
         error: err.message
     });
 });
