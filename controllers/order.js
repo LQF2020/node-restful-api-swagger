@@ -23,11 +23,7 @@ const orderController = {
                 };
                 res.status(200).json(response);
             })
-            .catch((e) =>
-                res.status(500).json({
-                    error: e
-                })
-            );
+            .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
     },
     getOrder(req, res) {
         const { orderID } = req.params;
@@ -43,11 +39,7 @@ const orderController = {
                     });
                 }
             })
-            .catch((e) =>
-                res.status(500).json({
-                    error: e
-                })
-            );
+            .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
     },
     createOrder(req, res) {
         const order = new Order({
@@ -71,7 +63,7 @@ const orderController = {
                     }
                 });
             })
-            .catch((e) => res.status(500).json({ error: e }));
+            .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
     },
     updateOrder(req, res) {
         const { orderID } = req.params;
@@ -85,7 +77,7 @@ const orderController = {
                 });
             })
             .catch((e) => {
-                res.status(500).json({ error: e });
+                res.status(500).json({ error: 'Internal server error.' });
             });
     },
     deleteOrder(req, res) {
@@ -104,7 +96,7 @@ const orderController = {
                     });
                 }
             })
-            .catch((e) => res.status(500).json({ error: e }));
+            .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
     }
 };
 

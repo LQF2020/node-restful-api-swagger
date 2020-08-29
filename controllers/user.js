@@ -35,7 +35,7 @@ const userController = {
                         res.status(404).json({ msg: 'User created failed.' });
                     }
                 })
-                .catch((e) => res.status(500).json({ error: e }));
+                .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
         });
     },
 
@@ -53,12 +53,12 @@ const userController = {
                                 res.status(401).json({ msg: 'Login Success.', accessToken: token });
                             } else res.status(401).json({ msg: 'Login failed.' });
                         })
-                        .catch((e) => res.status(500).json({ error: e }));
+                        .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
                 } else {
-                    res.status(401).json({ msg: 'This email is not exist.' });
+                    res.status(404).json({ msg: 'This account is not found.' });
                 }
             })
-            .catch((e) => res.status(500).json({ error: e }));
+            .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
     },
     emailVerification(req, res) {
         try {
@@ -70,7 +70,7 @@ const userController = {
                         msg: `Email verification Succeeded. You are able to login with your ${verified.email}.`
                     });
                 })
-                .catch((e) => res.status(500).json({ error: e }));
+                .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
         } catch (e) {
             res.status(401).json({ msg: 'Email verification process failed.' });
         }

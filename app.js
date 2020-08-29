@@ -3,6 +3,9 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 const dbConn = require('./db/connect');
 
 dbConn();
@@ -30,7 +33,7 @@ app.use((req, res, next) => {
         next();
     }
 });
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // router files
 const productRouter = require('./api/router/product');
 const orderRouter = require('./api/router/order');

@@ -1,0 +1,127 @@
+{
+    "swagger": "2.0",
+
+    "info": {
+        "title": "Node-Restful-Shop API Doc",
+        "version": "1.0.0",
+        "description": "A test project to understand how easy it is to document and Express API",
+        "license": {
+            "name": "MIT",
+            "url": "https://choosealicense.com/licenses/mit/"
+        },
+        "contact": {
+            "name": "DOC OWNER",
+            "url": "https://swagger.io",
+            "email": "qifu1995@gmail.com"
+        }
+    },
+    "paths": {
+        "/user/signup": {
+            "post": {
+                "tags": ["User"],
+                "description": "Register a user account",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "newUser",
+                        "description": "An object contains email and password for signup purpose.",
+                        "required": true,
+                        "schema": { "$ref": "#/definitions/user" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully created. An verification email will be sent."
+                    },
+                    "409": {
+                        "description": "Email already exist."
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "tags": ["User"],
+                "description": "An object contains email and password for login purpose.",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "existingUser",
+                        "description": "This contains all the user info that used to sign up.",
+                        "required": true,
+                        "schema": { "$ref": "#/definitions/user" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "example": "User successfully login."
+                                }
+                            }
+                        },
+                        "description": "Login successfully."
+                    },
+                    "401": {
+                        "schema": {
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "example": "User failed to login."
+                                }
+                            }
+                        },
+                        "description": "Auth failed. User not able to login."
+                    },
+                    "404": {
+                        "schema": {
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "example": "This account is not found."
+                                }
+                            }
+                        },
+                        "description": "Auth failed. User not able to login."
+                    },
+                    "500": {
+                        "schema": {
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "example": "Internal server error."
+                                }
+                            }
+                        },
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "user": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "example": "603428564@qq.com",
+                    "type": "string"
+                },
+                "papssword": {
+                    "example": "my-password",
+                    "type": "string",
+                    "format": "password"
+                }
+            }
+        }
+    }
+}

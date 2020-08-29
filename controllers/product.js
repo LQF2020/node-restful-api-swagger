@@ -24,12 +24,9 @@ const productController = {
                 };
                 res.status(200).json(response);
             })
-            .catch((e) =>
-                res.status(500).json({
-                    error: e
-                })
-            );
+            .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
     },
+
     getProduct(req, res) {
         const { productID } = req.params;
         Product.findById(productID)
@@ -44,11 +41,7 @@ const productController = {
                     });
                 }
             })
-            .catch((e) =>
-                res.status(500).json({
-                    error: e
-                })
-            );
+            .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
     },
     createProduct(req, res) {
         const product = new Product({
@@ -75,11 +68,7 @@ const productController = {
                     }
                 });
             })
-            .catch((e) =>
-                res.status(500).json({
-                    error: e
-                })
-            );
+            .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
     },
     updateProduct(req, res) {
         const { productID } = req.params;
@@ -93,7 +82,7 @@ const productController = {
                 });
             })
             .catch((e) => {
-                res.status(500).json({ error: e });
+                res.status(500).json({ error: 'Internal server error.' });
             });
     },
     deleteProduct(req, res) {
@@ -113,7 +102,7 @@ const productController = {
                     });
                 }
             })
-            .catch((e) => res.status(500).json({ error: e }));
+            .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
     }
 };
 
