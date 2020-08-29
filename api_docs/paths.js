@@ -5,13 +5,10 @@ module.exports = {
     '/user/signup': User.signup,
     '/user/login': User.login,
 
-    '/products': Product.getAllProducts,
-    '/products?accessToken={token}': Product.createProduct,
-    '/products/{productID}': Product.getProductById,
-    '/products/{productID}?accessToken={token}': Product.update_and_delete,
+    '/products': Product.get_post,
 
-    '/orders': Order.getAllOrders,
-    '/orders?accessToken={token}': Order.createOrder,
-    '/orders/{orderID}': Order.getOrderById,
-    '/orders/{orderID}?accessToken={token}': Order.update_and_delete
+    '/products/{productID}': Product.get_patch_delete,
+
+    '/orders': Order.get_post,
+    '/orders/{orderID}': Order.get_patch_delete
 };

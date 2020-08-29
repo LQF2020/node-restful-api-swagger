@@ -1,5 +1,5 @@
 module.exports = {
-    getAllProducts: {
+    get_post: {
         get: {
             tags: ['Product'],
             summary: 'Get the list of all products',
@@ -13,9 +13,7 @@ module.exports = {
                     description: 'Internal server error'
                 }
             }
-        }
-    },
-    createProduct: {
+        },
         post: {
             tags: ['Product'],
             summary: 'Create a new product',
@@ -42,7 +40,7 @@ module.exports = {
                 },
                 {
                     in: 'query',
-                    name: 'token',
+                    name: 'accessToken',
                     required: true,
                     type: 'string'
                 }
@@ -57,7 +55,7 @@ module.exports = {
             }
         }
     },
-    getProductById: {
+    get_patch_delete: {
         get: {
             tags: ['Product'],
             summary: 'Get an existing product',
@@ -81,9 +79,7 @@ module.exports = {
                     description: 'Internal server error'
                 }
             }
-        }
-    },
-    update_and_delete: {
+        },
         patch: {
             tags: ['Product'],
             summary: 'Update an existing product',
@@ -107,7 +103,7 @@ module.exports = {
                 },
                 {
                     in: 'query',
-                    name: 'token',
+                    name: 'accessToken',
                     required: true,
                     type: 'string'
                 }
@@ -135,7 +131,7 @@ module.exports = {
                 },
                 {
                     in: 'query',
-                    name: 'token',
+                    name: 'accessToken',
                     required: true,
                     type: 'string'
                 }

@@ -10,20 +10,5 @@ module.exports = {
                 format: 'password'
             }
         }
-    },
-    Product: {
-        type: 'object',
-        properties: {
-            price: {
-                type: 'integer'
-            },
-            name: {
-                type: 'string'
-            },
-            imgURL: {
-                type: 'string'
-            }
-        }
-    },
-    Products: {}
+    }
 };

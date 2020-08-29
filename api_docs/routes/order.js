@@ -1,5 +1,5 @@
 module.exports = {
-    getAllOrders: {
+    get_post: {
         get: {
             tags: ['Order'],
             summary: 'Get the list of all orders',
@@ -13,9 +13,7 @@ module.exports = {
                     description: 'Internal server error'
                 }
             }
-        }
-    },
-    createOrder: {
+        },
         post: {
             tags: ['Order'],
             summary: 'Create a new order',
@@ -36,7 +34,7 @@ module.exports = {
 
                 {
                     in: 'query',
-                    name: 'token',
+                    name: 'accessToken',
                     required: true,
                     type: 'string'
                 }
@@ -51,7 +49,7 @@ module.exports = {
             }
         }
     },
-    getOrderById: {
+    get_patch_delete: {
         get: {
             tags: ['Order'],
             summary: 'Get an existing order',
@@ -75,9 +73,7 @@ module.exports = {
                     description: 'Internal server error'
                 }
             }
-        }
-    },
-    update_and_delete: {
+        },
         patch: {
             tags: ['Order'],
             summary: 'Update an existing order',
@@ -96,7 +92,7 @@ module.exports = {
                 },
                 {
                     in: 'query',
-                    name: 'token',
+                    name: 'accessToken',
                     required: true,
                     type: 'string'
                 }
@@ -110,7 +106,6 @@ module.exports = {
                 }
             }
         },
-
         delete: {
             tags: ['Order'],
             summary: 'Delete an existing order',
@@ -124,7 +119,7 @@ module.exports = {
                 },
                 {
                     in: 'query',
-                    name: 'token',
+                    name: 'accessToken',
                     required: true,
                     type: 'string'
                 }

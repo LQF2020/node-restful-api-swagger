@@ -15,7 +15,7 @@ module.exports = {
                 }
             ],
             responses: {
-                '200': {
+                '201': {
                     description: 'User successfully created. An verification email will be sent.'
                 },
                 '409': {
