@@ -1,5 +1,5 @@
 module.exports = {
-    user: {
+    User: {
         type: 'object',
         properties: {
             email: {
@@ -9,7 +9,21 @@ module.exports = {
                 type: 'string',
                 format: 'password'
             }
-        },
-        required: ['email', 'password']
-    }
+        }
+    },
+    Product: {
+        type: 'object',
+        properties: {
+            price: {
+                type: 'integer'
+            },
+            name: {
+                type: 'string'
+            },
+            imgURL: {
+                type: 'string'
+            }
+        }
+    },
+    Products: {}
 };

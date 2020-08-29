@@ -9,7 +9,9 @@ const checkAuth = (req, res, next) => {
         // The product/order Handler should assign different authority based on userData.email
         next();
     } catch (e) {
-        res.status(401).json({ msg: 'Auth failed because an invalid token received.' });
+        res.status(401).json({
+            msg: 'Auth failed because of an missing token or invalid token received.'
+        });
     }
 };
 

@@ -2,7 +2,7 @@ module.exports = {
     signup: {
         post: {
             tags: ['User'],
-            description: 'Register an user account',
+            summary: 'Register an user account',
             produces: ['application/json'],
             consumes: ['application/json'],
             parameters: [
@@ -11,7 +11,7 @@ module.exports = {
                     name: 'newUser',
                     required: true,
                     description: 'An object contains email and password for signup purpose.',
-                    schema: { $ref: '#/definitions/user' }
+                    schema: { $ref: '#/definitions/User' }
                 }
             ],
             responses: {
@@ -30,61 +30,29 @@ module.exports = {
     login: {
         post: {
             tags: ['User'],
-            description: 'An object contains email and password for login purpose.',
+            summary: 'User login with email and password',
             produces: ['application/json'],
             consumes: ['application/json'],
             parameters: [
                 {
                     in: 'body',
                     name: 'existingUser',
-                    description: 'This contains all the user info that used to sign up.',
+                    description: 'An object contains email and password for login purpose.',
                     required: true,
-                    schema: { $ref: '#/definitions/user' }
+                    schema: { $ref: '#/definitions/User' }
                 }
             ],
             responses: {
                 '200': {
-                    schema: {
-                        properties: {
-                            msg: {
-                                type: 'string',
-                                example: 'User successfully login.'
-                            }
-                        }
-                    },
-                    description: 'Login successfully.'
+                    description: 'User login successfully, with API access token provided.'
                 },
                 '401': {
-                    schema: {
-                        properties: {
-                            msg: {
-                                type: 'string',
-                                example: 'User failed to login.'
-                            }
-                        }
-                    },
-                    description: 'Auth failed. User not able to login.'
+                    description: 'Auth failed with an incorrect password.'
                 },
                 '404': {
-                    schema: {
-                        properties: {
-                            msg: {
-                                type: 'string',
-                                example: 'This account is not found.'
-                            }
-                        }
-                    },
-                    description: 'Auth failed. User not able to login.'
+                    description: 'This user account is not found.'
                 },
                 '500': {
-                    schema: {
-                        properties: {
-                            msg: {
-                                type: 'string',
-                                example: 'Internal server error.'
-                            }
-                        }
-                    },
                     description: 'Internal server error.'
                 }
             }

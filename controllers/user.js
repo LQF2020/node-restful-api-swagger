@@ -50,12 +50,15 @@ const userController = {
                         .then((matched) => {
                             if (matched) {
                                 const token = createToken(storedUser);
-                                res.status(401).json({ msg: 'Login Success.', accessToken: token });
-                            } else res.status(401).json({ msg: 'Login failed.' });
+                                res.status(200).json({ msg: 'Login Success.', accessToken: token });
+                            } else
+                                res.status(401).json({
+                                    msg: 'Auth failed with an incorrect password.'
+                                });
                         })
                         .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
                 } else {
-                    res.status(404).json({ msg: 'This account is not found.' });
+                    res.status(404).json({ msg: 'This user account is not found.' });
                 }
             })
             .catch((e) => res.status(500).json({ error: 'Internal server error.' }));

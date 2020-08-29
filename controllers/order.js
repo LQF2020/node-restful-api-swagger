@@ -71,6 +71,7 @@ const orderController = {
         Order.update({ _id: orderID }, { $set: updateOps })
             .exec()
             .then((result) => {
+                console.LOG(result);
                 res.status(200).json({
                     msg: 'Order updated successfully.',
                     request: { type: 'GET', url: `${process.env.BASE_URL}/orders/${orderID}` }

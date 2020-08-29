@@ -1,6 +1,7 @@
 const meta = require('./swaggerMeta');
-const user = require('./routes/user');
+const paths = require('./paths');
 const definitions = require('./definitions');
+
 module.exports = {
     swagger: meta.swagger,
     info: {
@@ -18,9 +19,6 @@ module.exports = {
         }
     },
     schemes: meta.schemes,
-    paths: {
-        '/user/signup': user.signup,
-        '/user/login': user.login
-    },
+    paths: paths,
     definitions: definitions
 };
