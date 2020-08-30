@@ -38,9 +38,11 @@ This project is created for self-learning purpose, following the instructions by
     ```
     PROJECT_OWNER=%YOUR_NAME%
     PROJECT_OWNER_EMAIL=%YOUR_EMAIL_ADDRESS%
-    DB_URI=%YOUR_DB_URI%
 
-    BASE_URL=%YOUR_BASE_URL%  // e.g. HTTP://127.0.0.1:3000
+    PORT=%APP_LISTENING_PORT%  //e.g. 3000
+    BASE_URL=%YOUR_APP_BASE_URL%  // e.g. HTTP://127.0.0.1:3000
+
+    DB_URI=%YOUR_DB_URI%
 
     JWT_SECRET=%A_SECRET_FOR_GENERATING_API_ACCESS_TOKEN%
 
