@@ -1,10 +1,12 @@
 const User = require('../db/model/user');
 
 function validateEmail(email) {
+    console.log(email);
     const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     return re.test(String(email).toLowerCase());
 }
 const checkRegisterEmailVaild = (req, res, next) => {
+    console.log(req.body);
     if (validateEmail(req.body.email)) {
         User.findOne({ email: req.body.email })
             .exec()

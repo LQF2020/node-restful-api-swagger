@@ -1,9 +1,9 @@
 const meta = require('./swaggerMeta');
 const paths = require('./paths');
-const definitions = require('./definitions');
+const components = require('./components');
 
 module.exports = {
-    swagger: meta.swagger,
+    openapi: meta.openapi,
     info: {
         title: meta.info.title,
         version: meta.info.version,
@@ -18,7 +18,7 @@ module.exports = {
             email: meta.info.contact.email
         }
     },
-    schemes: meta.schemes,
+    servers: meta.servers,
     paths: paths,
-    definitions: definitions
+    components: components
 };

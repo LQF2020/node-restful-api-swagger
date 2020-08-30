@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Order = require('../db/model/order');
+const Product = require('../db/model/product');
 
 const orderController = {
     getAllOrders(req, res) {
@@ -42,40 +43,61 @@ const orderController = {
             .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
     },
     createOrder(req, res) {
-        const order = new Order({
-            _id: new mongoose.Types.ObjectId(),
-            productID: req.body.productID,
-            quantity: req.body.quantity
-        });
-        order
-            .save()
-            .then((item) => {
-                res.status(201).json({
-                    msg: `New order created.`,
-                    createdOrder: {
-                        _id: item._id,
-                        productID: item.productID,
-                        quantity: item.quantity,
-                        request: {
-                            type: 'GET',
-                            url: `${process.env.BASE_URL}/orders/${item._id}`
-                        }
-                    }
-                });
+        Product.findOne({ _id: req.body.productID })
+            .exec()
+            .then((product) => {
+                if (product) {
+                    const order = new Order({
+                        _id: new mongoose.Types.ObjectId(),
+                        productID: req.body.productID,
+                        quantity: req.body.quantity
+                    });
+                    order
+                        .save()
+                        .then((item) => {
+                            res.status(201).json({
+                                msg: `New order created.`,
+                                createdOrder: {
+                                    _id: item._id,
+                                    productID: item.productID,
+                                    quantity: item.quantity,
+                                    request: {
+                                        type: 'GET',
+                                        url: `${process.env.BASE_URL}/orders/${item._id}`
+                                    }
+                                }
+                            });
+                        })
+                        .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
+                } else {
+                    res.status(404).json({ msg: 'Product not exist.' });
+                }
             })
-            .catch((e) => res.status(500).json({ error: 'Internal server error.' }));
+            .catch((e) => res.status(500).json({ msg: 'Internal server error.' }));
     },
     updateOrder(req, res) {
         const { orderID } = req.params;
         const updateOps = req.body;
-        Order.update({ _id: orderID }, { $set: updateOps })
+        console.log(orderID, updateOps);
+
+        Order.updateOne({ _id: orderID }, { $set: updateOps })
             .exec()
             .then((result) => {
-                console.LOG(result);
-                res.status(200).json({
-                    msg: 'Order updated successfully.',
-                    request: { type: 'GET', url: `${process.env.BASE_URL}/orders/${orderID}` }
-                });
+                console.log(result);
+                if (result.nModified >= 1) {
+                    res.status(200).json({
+                        msg: 'Order updated successfully.',
+                        request: { type: 'GET', url: `${process.env.BASE_URL}/orders/${orderID}` }
+                    });
+                } else if (result.n === 1) {
+                    res.status(404).json({
+                        msg: 'No change in order.'
+                    });
+                } else {
+                    res.status(404).json({
+                        msg: 'Order not found.'
+                    });
+                }
             })
             .catch((e) => {
                 res.status(500).json({ error: 'Internal server error.' });

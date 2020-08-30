@@ -18,27 +18,26 @@ module.exports = {
             tags: ['Order'],
             summary: 'Create a new order',
             produces: ['application/json'],
-            parameters: [
-                {
-                    in: 'body',
-                    name: 'productID',
-                    required: true,
-                    type: 'string'
-                },
-                {
-                    in: 'body',
-                    name: 'quantity',
-                    required: true,
-                    type: 'integer'
-                },
 
-                {
-                    in: 'query',
-                    name: 'accessToken',
-                    required: true,
-                    type: 'string'
+            requestBody: {
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                productID: {
+                                    type: 'string'
+                                },
+                                quantity: {
+                                    type: 'integer'
+                                }
+                            }
+                        },
+                        required: ['productID', 'quantity']
+                    }
                 }
-            ],
+            },
+            security: [{ bearerAuth: [] }],
             responses: {
                 '201': {
                     description: 'order has been successfully created and returned to client.'
@@ -80,26 +79,37 @@ module.exports = {
             produces: ['application/json'],
             parameters: [
                 {
-                    in: 'body',
-                    name: 'quantity',
-                    type: 'integer'
-                },
-                {
                     in: 'path',
                     name: 'orderID',
                     required: true,
                     type: 'string'
-                },
-                {
-                    in: 'query',
-                    name: 'accessToken',
-                    required: true,
-                    type: 'string'
                 }
             ],
+            requestBody: {
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                quantity: {
+                                    type: 'integer'
+                                },
+                                productID: {
+                                    type: 'string'
+                                }
+                            }
+                        },
+                        required: ['quantity', 'productID']
+                    }
+                }
+            },
+            security: [{ bearerAuth: [] }],
             responses: {
                 '200': {
                     description: 'order has been successfully updated.'
+                },
+                '404': {
+                    description: 'Order not found.'
                 },
                 '500': {
                     description: 'Internal server error'
@@ -116,14 +126,9 @@ module.exports = {
                     name: 'orderID',
                     required: true,
                     type: 'string'
-                },
-                {
-                    in: 'query',
-                    name: 'accessToken',
-                    required: true,
-                    type: 'string'
                 }
             ],
+            security: [{ bearerAuth: [] }],
             responses: {
                 '200': {
                     description: 'order has been successfully deleted.'

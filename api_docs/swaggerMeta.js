@@ -1,5 +1,5 @@
 module.exports = {
-    swagger: '2.0',
+    openapi: '3.0.0',
     info: {
         title: 'Node-Restful-Shop API Doc',
         version: '1.0.0',
@@ -10,10 +10,14 @@ module.exports = {
             url: 'https://choosealicense.com/licenses/mit/'
         },
         contact: {
-            name: 'DOC OWNER',
-            url: 'https://swagger.io',
+            name: 'QIFU LU',
             email: 'qifu1995@gmail.com'
         }
     },
-    schemes: ['http']
+    servers: [
+        {
+            url: 'http://127.0.0.1:3000',
+            description: 'Test server'
+        }
+    ]
 };
