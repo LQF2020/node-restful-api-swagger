@@ -12,47 +12,53 @@ This project is created for self-learning purpose, following the instructions by
 -   Restful API
 -   MongoDB Atlas
 -   Mongoose
--   Authencation
+-   JWT Authorization
+-   OpenApi and swagger
 
 ## How to use
 
 1. Clone Project into your local machine
 
-```
-git clone https://github.com/LQF2020/node-restful-shop.git
-```
+    ```
+    git clone https://github.com/LQF2020/node-restful-shop.git
+    ```
 
 2. Go into project folder and install packages.
 
-```
-cd node-restful-shop
-npm install
-```
+    ```
+    cd node-restful-shop
+    npm install
+    ```
 
 3. Create your cloud mongoDB account, go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
    After creating your cloud db server, follow step 4 to link this app to cloud DB.
 
 4. Create Environment configuration file `.env` under your root directory, with the following content completed.
 
-```
-DB_HOST=%YOUR_DB_HOST%
-DB_USER=%YOUR_DB_USER_NAME%
-DB_PASS=%YOUR_DB_PASSWORD%
-DB_NAME=%YOUR_DB_NAME%
-BASE_URL=%YOUR_BASE_URL%  // e.g. HTTP://127.0.0.1:3000
-JWT_SECRET=%A_SECRET_FOR_GENERATING_API_ACCESS_TOKEN%
+    ```
+    PROJECT_OWNER=%YOUR_NAME%
+    PROJECT_OWNER_EMAIL=%YOUR_EMAIL_ADDRESS%
+    DB_URI=%YOUR_DB_URI%
 
-JWT_EMAIL_SECRET=%A_SECRET_FOR_GENERATING_EMAIL_VERIFICATION_TOKEN%
+    BASE_URL=%YOUR_BASE_URL%  // e.g. HTTP://127.0.0.1:3000
 
+    JWT_SECRET=%A_SECRET_FOR_GENERATING_API_ACCESS_TOKEN%
 
-SENDER_EMAIL_HOST=%SENDER_EMAIL_HOST%
-SENDER_EMAIL_PORT=%SENDER_EMAIL_PORT%
-SENDER_EMAIL_ID=%SENDER_EMAIL%
-SENDER_EMAIL_PASSWORD=%SENDER_EMAIL_PASSWORD%
-```
+    JWT_EMAIL_SECRET=%A_SECRET_FOR_GENERATING_EMAIL_VERIFICATION_TOKEN%
 
-4. Start project
+    // This following info is to set up an Email Sender Server, which will be used to send verification email to user.
 
-```
-npm start
-```
+    SENDER_EMAIL_HOST=%SENDER_EMAIL_HOST%
+    SENDER_EMAIL_PORT=%SENDER_EMAIL_PORT%
+    SENDER_EMAIL_ID=%SENDER_EMAIL%
+    SENDER_EMAIL_PASSWORD=%SENDER_EMAIL_PASSWORD%
+
+    ```
+
+5. Start project
+
+    ```
+    npm start
+    ```
+
+6. Now, play with the restful url, please open the browser and access http://127.0.0.1:3000/api-docs .

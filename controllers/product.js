@@ -48,7 +48,7 @@ const productController = {
             _id: new mongoose.Types.ObjectId(),
             name: req.body.name,
             price: req.body.price,
-            imgURL: `${process.env.BASE_URL}/uploads/productImages/${req.file.filename}`
+            imgURL: `${process.env.BASE_URL}/uploads/${req.file.filename}`
         });
 
         product
@@ -76,10 +76,23 @@ const productController = {
         Product.update({ _id: productID }, { $set: updateOps })
             .exec()
             .then((result) => {
-                res.status(200).json({
-                    msg: 'Product updated successfully.',
-                    request: { type: 'GET', url: `${process.env.BASE_URL}/products/${productID}` }
-                });
+                if (result.nModified >= 1) {
+                    res.status(200).json({
+                        msg: 'Product updated successfully.',
+                        request: {
+                            type: 'GET',
+                            url: `${process.env.BASE_URL}/products/${productID}`
+                        }
+                    });
+                } else if (result.n === 1) {
+                    res.status(404).json({
+                        msg: 'No change in product.'
+                    });
+                } else {
+                    res.status(404).json({
+                        msg: 'Product not found.'
+                    });
+                }
             })
             .catch((e) => {
                 res.status(500).json({ error: 'Internal server error.' });

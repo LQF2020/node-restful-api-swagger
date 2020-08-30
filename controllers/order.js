@@ -83,7 +83,6 @@ const orderController = {
         Order.updateOne({ _id: orderID }, { $set: updateOps })
             .exec()
             .then((result) => {
-                console.log(result);
                 if (result.nModified >= 1) {
                     res.status(200).json({
                         msg: 'Order updated successfully.',

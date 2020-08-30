@@ -42,6 +42,13 @@ module.exports = {
                 '201': {
                     description: 'order has been successfully created and returned to client.'
                 },
+                '401': {
+                    description:
+                        'Auth failed because of an missing token or invalid token received.'
+                },
+                '404': {
+                    description: 'Product not exist.'
+                },
                 '500': {
                     description: 'Internal server error'
                 }
@@ -108,6 +115,10 @@ module.exports = {
                 '200': {
                     description: 'order has been successfully updated.'
                 },
+                '401': {
+                    description:
+                        'Auth failed because of an missing token or invalid token received.'
+                },
                 '404': {
                     description: 'Order not found.'
                 },
@@ -132,6 +143,10 @@ module.exports = {
             responses: {
                 '200': {
                     description: 'order has been successfully deleted.'
+                },
+                '401': {
+                    description:
+                        'Auth failed because of an missing token or invalid token received.'
                 },
                 '404': {
                     description: 'Order not found.'

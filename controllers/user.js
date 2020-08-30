@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../db/model/user');
-const sendVerificationMail = require('../verifyEmail');
+const sendVerificationMail = require('../email_verification/verifyEmail');
 const saltRound = 10;
 const { JWT_SECRET, JWT_EMAIL_SECRET } = process.env;
 

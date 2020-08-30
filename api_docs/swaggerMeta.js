@@ -10,13 +10,13 @@ module.exports = {
             url: 'https://choosealicense.com/licenses/mit/'
         },
         contact: {
-            name: 'QIFU LU',
-            email: 'qifu1995@gmail.com'
+            name: process.env.PROJECT_OWNER,
+            email: process.env.PROJECT_OWNER_EMAIL
         }
     },
     servers: [
         {
-            url: 'http://127.0.0.1:3000',
+            url: process.env.BASE_URL,
             description: 'Test server'
         }
     ]
