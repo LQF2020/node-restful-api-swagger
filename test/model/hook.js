@@ -1,26 +1,26 @@
 const mongoose = require('mongoose');
-const { DB_PROD_URI } = process.env;
-
-const DB_URI = DB_PROD_URI;
 
 mongoose.set('useCreateIndex', true);
 const db = mongoose.connection;
-
-const dbConn = () => {
+const DB_URI = 'mongodb://localhost:27017/node-restful-shop';
+// ROOT HOOK Executed before the test run
+before(function (done) {
     mongoose.connect(DB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
-
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function () {
         console.log('DB is connected!');
+        done();
     });
-};
-const dbClose = () => {
+});
+
+// ROOT HOOK Excuted after every tests finished
+after(function (done) {
     db.close();
     db.on('close', () => {
-        console.log('DB is disconnected!');
+        console.log('DB is closed');
+        done();
     });
-};
-module.exports = { dbConn, dbClose };
+});

@@ -6,7 +6,7 @@ const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./api_docs/swagger.js');
 
-const dbConn = require('./db/connect');
+const { dbConn } = require('./db/connect');
 
 dbConn();
 

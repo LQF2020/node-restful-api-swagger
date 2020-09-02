@@ -3,9 +3,17 @@
     "parserOptions": {
         "ecmaVersion": 2015
     },
+    "env": {
+        "mocha": true
+    },
     "parser": "babel-eslint",
     "rules": {
-        "no-unused-vars": ["warn", { "argsIgnorePattern": "next|reject" }],
+        "no-unused-vars": [
+            "warn",
+            {
+                "argsIgnorePattern": "next|reject|error"
+            }
+        ],
         "no-console": "off",
         "func-names": "off",
         "object-shorthand": "off",
