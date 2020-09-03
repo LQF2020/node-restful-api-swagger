@@ -22,14 +22,16 @@ const userController = {
             const user = new User({
                 _id: new mongoose.Types.ObjectId(),
                 email: req.body.email,
-                password: hash
+                password: hash,
+                isRegistered: process.env.NODE_ENV === 'test'
             });
+
             user.save()
                 .then((createdUser) => {
-                    sendVerificationMail(req.body.email);
+                    // sendVerificationMail(req.body.email);
                     if (createdUser) {
                         res.status(201).json({
-                            msg: `User created succeeded. We have send an verfication email to ${req.body.email}`
+                            toVerify: req.body.email
                         });
                     } else {
                         res.status(404).json({ msg: 'User created failed.' });
@@ -70,7 +72,8 @@ const userController = {
                 .exec()
                 .then((result) => {
                     res.status(200).json({
-                        msg: `Email verification Succeeded. You are able to login with your ${verified.email}.`
+                        verified: true,
+                        email: verified.email
                     });
                 })
                 .catch((e) => res.status(500).json({ error: 'Internal server error.' }));

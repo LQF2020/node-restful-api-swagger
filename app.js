@@ -1,14 +1,9 @@
-require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./api_docs/swagger.js');
-
-const { dbConn } = require('./db/connect');
-
-dbConn();
 
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));

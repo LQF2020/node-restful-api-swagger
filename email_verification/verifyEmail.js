@@ -32,20 +32,23 @@ const getVerificationLink = (email) => {
 const sendVerificationMail = async (receiverEmail) => {
     const link = getVerificationLink(receiverEmail);
     // send mail with defined transport object
-    const info = await transporter.sendMail({
-        from: SENDER_EMAIL_ID, // sender address
-        to: `${receiverEmail}`, // list of receivers
-        subject: 'Verification: Email address', // Subject line
-
-        html: `
-		<div>Please click in the following link to verify your email address.</div>
-		<a href=${link} target="_blank">${link}</a>
-		` // html body
-    });
-    if (info && info.messageId) {
-        console.log('email already has been sent');
-    } else {
-        console.log('email failed to send');
+    try {
+        const info = await transporter.sendMail({
+            from: SENDER_EMAIL_ID, // sender address
+            to: `${receiverEmail}`, // list of receivers
+            subject: 'Verification: Email address', // Subject line
+            html: `
+		        <div>Please click in the following link to verify your email address.</div>
+		        <a href=${link} target="_blank">${link}</a>
+		        ` // html body
+        });
+        if (info && info.messageId) {
+            // console.log('email already has been sent');
+        } else {
+            // console.log('email failed to send');
+        }
+    } catch (error) {
+        throw new Error('Verification mail sent failed.');
     }
 };
 

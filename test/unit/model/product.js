@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { expect } = require('chai');
-const Product = require('../../db/model/product');
+const Product = require('../../../db/model/product');
 
 describe('Model', function () {
     let savedProduct;
@@ -58,10 +58,12 @@ describe('Model', function () {
     });
     describe('Delete product', async function () {
         it('should have been deleted successfully', async function () {
-            expect(savedProduct).to.have.property('_id').equal(savedProduct._id);
-            expect(savedProduct).to.have.property('name').equal(savedProduct.name);
+            expect(savedProduct).to.have.property('_id');
+            expect(savedProduct).to.have.property('name');
+            expect(savedProduct).to.have.property('price');
+            expect(savedProduct).to.have.property('imgURL');
             await Product.deleteOne({ _id: savedProduct._id });
-            let resultProduct = await Product.findOne({ _id: savedProduct._id });
+            const resultProduct = await Product.findOne({ _id: savedProduct._id });
             expect(resultProduct).equal(null);
         });
     });

@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const mongoose = require('mongoose');
-const User = require('../../db/model/user');
+const User = require('../../../db/model/user');
 
 describe('Model', function () {
     let savedUser;
