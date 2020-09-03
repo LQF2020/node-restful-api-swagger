@@ -4,13 +4,12 @@ const Order = require('../../../db/model/order');
 
 describe('Model', function () {
     let savedOrder;
-    let orderInfo;
+    const orderInfo = {
+        _id: new mongoose.Types.ObjectId(),
+        productID: new mongoose.Types.ObjectId(),
+        quantity: 10
+    };
     beforeEach(async function () {
-        orderInfo = {
-            _id: new mongoose.Types.ObjectId(),
-            productID: new mongoose.Types.ObjectId(),
-            quantity: 10
-        };
         const order = Order(orderInfo);
         savedOrder = await order.save();
     });

@@ -46,38 +46,37 @@ describe('/user', function () {
                 .send(invalidEmailSignUp)
                 .expect(404, done);
         });
-
-        describe('POST /login', function () {
-            it('should login successfully if correct email and password provided', function (done) {
-                client
-                    .post('/user/login')
-                    .set('Accept', 'application/json')
-                    .set('Content-Type', 'application/json')
-                    .send(signupInfo)
-                    .expect(200)
-                    .end(function (err, res) {
-                        if (err) done(err);
-                        expect(res.body).to.has.property('msg');
-                        expect(res.body).to.has.property('accessToken');
-                        done();
-                    });
-            });
-            it('should return 401 Auth failed if incorrect password provided', function (done) {
-                client
-                    .post('/user/login')
-                    .set('Accept', 'application/json')
-                    .set('Content-Type', 'application/json')
-                    .send(incorrectPasswordLogin)
-                    .expect(401, done);
-            });
-            it('should return 404 not found error if email is not exist', function (done) {
-                client
-                    .post('/user/login')
-                    .set('Accept', 'application/json')
-                    .set('Content-Type', 'application/json')
-                    .send(notExistEmailLogin)
-                    .expect(404, done);
-            });
+    });
+    describe('POST /login', function () {
+        it('should login successfully if correct email and password provided', function (done) {
+            client
+                .post('/user/login')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .send(signupInfo)
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) done(err);
+                    expect(res.body).to.has.property('msg');
+                    expect(res.body).to.has.property('accessToken');
+                    done();
+                });
+        });
+        it('should return 401 Auth failed if incorrect password provided', function (done) {
+            client
+                .post('/user/login')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .send(incorrectPasswordLogin)
+                .expect(401, done);
+        });
+        it('should return 404 not found error if email is not exist', function (done) {
+            client
+                .post('/user/login')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .send(notExistEmailLogin)
+                .expect(404, done);
         });
     });
 });

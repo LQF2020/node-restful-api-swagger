@@ -4,21 +4,14 @@ const Product = require('../../../db/model/product');
 
 describe('Model', function () {
     let savedProduct;
-    let productInfo;
+    const productInfo = {
+        _id: new mongoose.Types.ObjectId(),
+        name: 'Nikes 270',
+        price: 89.99,
+        imgURL: 'product image url of Nike 270'
+    };
     beforeEach(async function () {
-        productInfo = {
-            _id: new mongoose.Types.ObjectId(),
-            name: 'Nikes 270',
-            price: 89.99,
-            imgURL: 'product image url of Nike 270'
-        };
-
-        const product = Product({
-            _id: productInfo._id,
-            name: productInfo.name,
-            price: productInfo.price,
-            imgURL: productInfo.imgURL
-        });
+        const product = Product(productInfo);
         savedProduct = await product.save();
     });
     afterEach(async function () {

@@ -10,11 +10,7 @@ describe('Model', function () {
         password: 'test'
     };
     beforeEach(async function () {
-        const user = User({
-            _id: userInfo._id,
-            email: userInfo.email,
-            password: userInfo.password
-        });
+        const user = User(userInfo);
         savedUser = await user.save();
     });
     afterEach(async function () {
