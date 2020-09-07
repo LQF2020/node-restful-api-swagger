@@ -17,7 +17,7 @@ module.exports = {
     servers: [
         {
             url: `${process.env.HOST}:${process.env.PORT}`,
-            description: 'Test server'
+            description: 'Server'
         }
     ]
 };

@@ -4,10 +4,10 @@
     "description": "A nodejs restfulapi server",
     "main": "index.js",
     "scripts": {
-        "start": "export NODE_ENV=development && nodemon ./server.js",
+        "start": "npx cross-env NODE_ENV=development && nodemon ./server.js",
         "lint": "./node_modules/.bin/eslint --ext .js,.jsx .",
         "lint:fix": "./node_modules/.bin/eslint --fix --ext .js,.jsx .",
-        "test": "export NODE_ENV=test && npx mocha --recursive --exit "
+        "test": "npx cross-env NODE_ENV=test && npx mocha --recursive --exit "
     },
     "repository": {
         "type": "git",
@@ -34,6 +34,7 @@
     "devDependencies": {
         "babel-eslint": "^10.1.0",
         "chai": "^4.2.0",
+        "cross-env": "^7.0.2",
         "eslint": "^7.2.0",
         "eslint-config-airbnb-base": "^14.2.0",
         "eslint-config-node": "^4.1.0",
