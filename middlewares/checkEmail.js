@@ -6,6 +6,7 @@ function validateEmail(email) {
 }
 const checkRegisterEmailVaild = (req, res, next) => {
     if (validateEmail(req.body.email)) {
+        console.log(req.body.email);
         User.findOne({ email: req.body.email })
             .exec()
             .then((existUser) => {

@@ -17,7 +17,7 @@ const productController = {
                             imgURL: item.imgURL,
                             request: {
                                 type: 'GET',
-                                url: `${process.env.BASE_URL}/products/${item._id}`
+                                url: `${process.env.HOST}:${process.env.PORT}/products/${item._id}`
                             }
                         };
                     })
@@ -48,7 +48,7 @@ const productController = {
             _id: new mongoose.Types.ObjectId(),
             name: req.body.name,
             price: req.body.price,
-            imgURL: `${process.env.BASE_URL}/uploads/${req.file.filename}`
+            imgURL: `${process.env.HOST}:${process.env.PORT}/uploads/${req.file.filename}`
         });
 
         product
@@ -63,7 +63,7 @@ const productController = {
                         imgURL: item.imgURL,
                         request: {
                             type: 'GET',
-                            url: `${process.env.BASE_URL}/products/${item._id}`
+                            url: `${process.env.HOST}:${process.env.PORT}/products/${item._id}`
                         }
                     }
                 });
@@ -73,7 +73,7 @@ const productController = {
     updateProduct(req, res) {
         const { productID } = req.params;
         const updateOps = req.body;
-        Product.update({ _id: productID }, { $set: updateOps })
+        Product.updateOne({ _id: productID }, { $set: updateOps })
             .exec()
             .then((result) => {
                 if (result.nModified >= 1) {
@@ -81,7 +81,7 @@ const productController = {
                         msg: 'Product updated successfully.',
                         request: {
                             type: 'GET',
-                            url: `${process.env.BASE_URL}/products/${productID}`
+                            url: `${process.env.HOST}:${process.env.PORT}/products/${productID}`
                         }
                     });
                 } else if (result.n === 1) {
@@ -100,13 +100,16 @@ const productController = {
     },
     deleteProduct(req, res) {
         const { productID } = req.params;
-        Product.remove({ _id: productID })
+        Product.deleteOne({ _id: productID })
             .exec()
             .then((result) => {
                 if (result.deletedCount >= 1) {
                     res.status(200).json({
                         msg: 'Product deleted successfully.',
-                        request: { type: 'GET', url: `${process.env.BASE_URL}/products` }
+                        request: {
+                            type: 'GET',
+                            url: `${process.env.HOST}:${process.env.PORT}/products`
+                        }
                     });
                 } else {
                     res.status(404).json({

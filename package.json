@@ -4,10 +4,10 @@
     "description": "A nodejs restfulapi server",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon ./server.js",
+        "start": "export NODE_ENV=development && nodemon ./server.js",
         "lint": "./node_modules/.bin/eslint --ext .js,.jsx .",
         "lint:fix": "./node_modules/.bin/eslint --fix --ext .js,.jsx .",
-        "test": "export NODE_ENV=test && npx mocha --recursive "
+        "test": "export NODE_ENV=test && npx mocha --recursive --exit "
     },
     "repository": {
         "type": "git",

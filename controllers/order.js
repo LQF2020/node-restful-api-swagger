@@ -17,7 +17,7 @@ const orderController = {
                             quantity: item.quantity,
                             request: {
                                 type: 'GET',
-                                url: `${process.env.BASE_URL}/orders/${item._id}`
+                                url: `${process.env.HOST}:${process.env.PORT}/orders/${item._id}`
                             }
                         };
                     })
@@ -63,7 +63,7 @@ const orderController = {
                                     quantity: item.quantity,
                                     request: {
                                         type: 'GET',
-                                        url: `${process.env.BASE_URL}/orders/${item._id}`
+                                        url: `${process.env.HOST}:${process.env.PORT}/orders/${item._id}`
                                     }
                                 }
                             });
@@ -78,15 +78,16 @@ const orderController = {
     updateOrder(req, res) {
         const { orderID } = req.params;
         const updateOps = req.body;
-        console.log(orderID, updateOps);
-
         Order.updateOne({ _id: orderID }, { $set: updateOps })
             .exec()
             .then((result) => {
                 if (result.nModified >= 1) {
                     res.status(200).json({
                         msg: 'Order updated successfully.',
-                        request: { type: 'GET', url: `${process.env.BASE_URL}/orders/${orderID}` }
+                        request: {
+                            type: 'GET',
+                            url: `${process.env.HOST}:${process.env.PORT}/orders/${orderID}`
+                        }
                     });
                 } else if (result.n === 1) {
                     res.status(404).json({
@@ -94,7 +95,7 @@ const orderController = {
                     });
                 } else {
                     res.status(404).json({
-                        msg: 'Order not found.'
+                        msg: 'No valid entry found.'
                     });
                 }
             })
@@ -104,13 +105,16 @@ const orderController = {
     },
     deleteOrder(req, res) {
         const { orderID } = req.params;
-        Order.remove({ _id: orderID })
+        Order.deleteOne({ _id: orderID })
             .exec()
             .then((result) => {
                 if (result.deletedCount >= 1) {
                     res.status(200).json({
                         msg: 'Order deleted successfully.',
-                        request: { type: 'GET', url: `${process.env.BASE_URL}/orders` }
+                        request: {
+                            type: 'GET',
+                            url: `${process.env.HOST}:${process.env.PORT}/orders`
+                        }
                     });
                 } else {
                     res.status(404).json({

@@ -2,10 +2,11 @@
 
 ## Abstract
 
-This project is created for self-learning purpose, following the instructions by [AcadeMind's RESTful Api with Node.js Course](https://www.youtube.com/watch?v=0oXYLzuucwE&list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q&index=1).
+This is A node.js based RESTful API project, with multiple functions like User Signup and Login, generate Api accessToken, create/update/get/delete products and orders.
 
 ## Knowledge Cover
 
+-   Swagger & OpenApi 3.0
 -   Node.js
 -   Express.js
 -   CORS
@@ -39,17 +40,20 @@ This project is created for self-learning purpose, following the instructions by
     PROJECT_OWNER=%YOUR_NAME%
     PROJECT_OWNER_EMAIL=%YOUR_EMAIL_ADDRESS%
 
-    PORT=%APP_LISTENING_PORT%  //e.g. 3000
-    BASE_URL=%YOUR_APP_BASE_URL%  // e.g. HTTP://127.0.0.1:3000
+    HOST=http://127.0.0.1
+    PORT=3000
 
-    DB_URI=%YOUR_DB_URI%
+    DB_PROD_URI=%YOUR_PRODUCTION_DB_URI%
+    DB_TEST_URI=%YOUR_TESTING_DB_URI%
 
-    JWT_SECRET=%A_SECRET_FOR_GENERATING_API_ACCESS_TOKEN%
+    JWT_SECRET=%A_RANDOM_SECRET_FOR_GENERATING_API_ACCESS_TOKEN%
 
-    JWT_EMAIL_SECRET=%A_SECRET_FOR_GENERATING_EMAIL_VERIFICATION_TOKEN%
+    JWT_EMAIL_SECRET=%A_RANDOM_SECRET_FOR_GENERATING_EMAIL_VERIFICATION_TOKEN%
 
-    // This following info is to set up an Email Sender Server, which will be used to send verification email to user.
+    // if set to 'true', user will receive verification email when sign up a new account
+    ENABLE_EMAIL_ADDRESS_VERIFICATION=false
 
+    // if "ENABLE_EMAIL_ADDRESS_VERIFICATION=true", please set up Email Sender to send verification email
     SENDER_EMAIL_HOST=%SENDER_EMAIL_HOST%
     SENDER_EMAIL_PORT=%SENDER_EMAIL_PORT%
     SENDER_EMAIL_ID=%SENDER_EMAIL%
@@ -63,4 +67,8 @@ This project is created for self-learning purpose, following the instructions by
     npm start
     ```
 
-6. Now, play with the restful url, please open the browser and access http://127.0.0.1:3000/api-docs .
+6. Now, you are ready to play with the restful urls. Just simply open your browser and access http://127.0.0.1:3000/api-docs . If you would like different %HOST% and %PORT%, just change in `.env` file.
+
+## Reference:
+
+This project is created for self-learning purpose, inspired by [AcadeMind's RESTful Api with Node.js Course](https://www.youtube.com/watch?v=0oXYLzuucwE&list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q&index=1).

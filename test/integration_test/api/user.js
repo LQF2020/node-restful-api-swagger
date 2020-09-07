@@ -4,14 +4,14 @@ const { expect } = require('chai');
 const app = require('../../../app');
 const client = request(app);
 
-describe('/user', function () {
+describe('API - /user', function () {
     const signupInfo = {
-        email: 'qifu1995@outlook.com',
+        email: 'test@mail-xxxx-server.com',
         password: 'test'
     };
-    const invalidEmailSignUp = { email: 'qifu1995outlook.com', password: 'test' };
-    const incorrectPasswordLogin = { email: 'qifu1995@outlook.com', password: 'wrong' };
-    const notExistEmailLogin = { email: 'qifu1995@isnotExist.com', password: 'wrong' };
+    const invalidEmailSignUp = { email: 'testmail-xxxx-server.com', password: 'test' };
+    const incorrectPasswordLogin = { email: 'test@mail-xxxx-server.com', password: 'wrong' };
+    const notExistEmailLogin = { email: 'test@not-exist-mail-xxxx-server.com', password: 'test' };
     after(async function () {
         await mongoose.connection.db.dropCollection('users');
     });

@@ -2,11 +2,11 @@ const { expect } = require('chai');
 const mongoose = require('mongoose');
 const User = require('../../../db/model/user');
 
-describe('Model', function () {
+describe('Model - User', function () {
     let savedUser;
     const userInfo = {
         _id: new mongoose.Types.ObjectId(),
-        email: 'test@mail.com',
+        email: 'test@mail-xxxx-server.com',
         password: 'test'
     };
     beforeEach(async function () {

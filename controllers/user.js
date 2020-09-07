@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../db/model/user');
 const sendVerificationMail = require('../email_verification/verifyEmail');
 const saltRound = 10;
-const { JWT_SECRET, JWT_EMAIL_SECRET } = process.env;
+const { JWT_SECRET, JWT_EMAIL_SECRET, ENABLE_EMAIL_ADDRESS_VERIFICATION } = process.env;
 
 const createToken = (user) => {
     const payLoad = {
@@ -15,6 +15,15 @@ const createToken = (user) => {
     return jwt.sign(payLoad, JWT_SECRET, config);
 };
 
+function shouldVerifyEmail() {
+    if (
+        process.env.NODE_ENV === 'test' ||
+        ENABLE_EMAIL_ADDRESS_VERIFICATION.toLowerCase() !== 'true'
+    )
+        return false;
+    return true;
+}
+
 const userController = {
     signUp(req, res) {
         bcrypt.hash(req.body.password, saltRound, (err, hash) => {
@@ -23,15 +32,17 @@ const userController = {
                 _id: new mongoose.Types.ObjectId(),
                 email: req.body.email,
                 password: hash,
-                isRegistered: process.env.NODE_ENV === 'test'
+                isRegistered: !shouldVerifyEmail()
             });
-
             user.save()
                 .then((createdUser) => {
-                    // sendVerificationMail(req.body.email);
+                    if (shouldVerifyEmail()) {
+                        sendVerificationMail(req.body.email);
+                    }
                     if (createdUser) {
                         res.status(201).json({
-                            toVerify: req.body.email
+                            toVerify: req.body.email,
+                            status: !shouldVerifyEmail()
                         });
                     } else {
                         res.status(404).json({ msg: 'User created failed.' });

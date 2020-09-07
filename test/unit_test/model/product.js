@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { expect } = require('chai');
 const Product = require('../../../db/model/product');
 
-describe('Model', function () {
+describe('Model - Product', function () {
     let savedProduct;
     const productInfo = {
         _id: new mongoose.Types.ObjectId(),

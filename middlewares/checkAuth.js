@@ -3,10 +3,10 @@ const { JWT_SECRET } = process.env;
 
 const checkAuth = (req, res, next) => {
     try {
-        console.log(new Date().getTime());
         const token = req.headers.authorization.split(' ')[1];
         const decoded = jwt.verify(token, JWT_SECRET);
         req.userData = decoded;
+
         // The product/order Handler should assign different authority based on userData.email
         next();
     } catch (e) {
