@@ -25,7 +25,7 @@ describe('API - /user', function () {
                 .expect(
                     201,
                     {
-                        toVerify: signupInfo.email,
+                        userID: signupInfo.email,
                         status: true
                     },
                     done

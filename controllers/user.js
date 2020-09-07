@@ -40,10 +40,13 @@ const userController = {
                         sendVerificationMail(req.body.email);
                     }
                     if (createdUser) {
-                        res.status(201).json({
-                            toVerify: req.body.email,
+                        const response = {
+                            userID: req.body.email,
                             status: !shouldVerifyEmail()
-                        });
+                        };
+                        if (shouldVerifyEmail())
+                            response.msg = `A verification email has been sent to ${req.body.email}`;
+                        res.status(201).json(response);
                     } else {
                         res.status(404).json({ msg: 'User created failed.' });
                     }
