@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./api_docs/swagger.js');
+const cors = require('./middlewares/cors');
 
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
@@ -18,16 +19,8 @@ app.use(
 app.use(bodyParser.json());
 
 // cors enabling
-app.use((req, res, next) => {
-    res.append('Access-Control-Allow-Origin', '*');
-    res.append('Access-Control-Allow-Headers', 'Content-type');
-    if (req.method === 'OPTIONS') {
-        res.append('Access-Allow-Control-Methods', 'PUT,DELETE,POST,PATCH,GET');
-        res.sendStatus(200);
-    } else {
-        next();
-    }
-});
+app.use(cors);
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // router files
 const productRouter = require('./api/router/product');
