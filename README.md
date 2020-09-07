@@ -42,20 +42,22 @@ This is A node.js based RESTful API project, with multiple functions like User S
     HOST=http://127.0.0.1
     PORT=3000
 
-    // DB for production / development stage
+    // DB for prod / dev stage, e.g. mongodb://localhost:27017/<your-prod-DB-name>
     DB_PROD_URI=%YOUR_PRODUCTION_DB_URI%
 
-    // DB for testing stage, e.g. mongodb://localhost:27017/<your-DB-name>
+    // DB for testing stage, e.g. mongodb://localhost:27017/<your-test-DB-name>
     DB_TEST_URI=%YOUR_TESTING_DB_URI%
 
-    JWT_SECRET=%A_RANDOM_SECRET_FOR_GENERATING_API_ACCESS_TOKEN%
+    // A random string used for generating API accessToken
+    JWT_SECRET=%some_secrets%
 
-    JWT_EMAIL_SECRET=%A_RANDOM_SECRET_FOR_GENERATING_EMAIL_VERIFICATION_TOKEN%
+    // A random string used for generating email verification accessToken
+    JWT_EMAIL_SECRET=%some_secrets%
 
     // if set to 'true', user will receive verification email when sign up a new account
     ENABLE_EMAIL_ADDRESS_VERIFICATION=false
 
-    // if "ENABLE_EMAIL_ADDRESS_VERIFICATION=true", please set up Email Sender to send verification email
+    // if set "ENABLE_EMAIL_ADDRESS_VERIFICATION=true", please fill up the following to init Email Sender
     SENDER_EMAIL_HOST=%SENDER_EMAIL_HOST%
     SENDER_EMAIL_PORT=%SENDER_EMAIL_PORT%
     SENDER_EMAIL_ID=%SENDER_EMAIL%
