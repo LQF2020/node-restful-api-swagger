@@ -159,7 +159,6 @@ describe('API - /orders', function () {
                 .delete(`/orders/${createdOrderID}`)
                 .set('Authorization', `bearer ${BEARER_TEST_TOKEN}`)
                 .set('Accept', 'application/json')
-                .set('Accept', 'application/json')
                 .expect(200)
                 .end(function (err, res) {
                     if (err) done(err);
