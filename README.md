@@ -1,4 +1,4 @@
-# node-restful-shop
+# Node-Restful-API-Swagger
 
 ## Abstract
 
