@@ -31,7 +31,7 @@ This is A node.js based RESTful API project, with multiple functions like User S
     npm install
     ```
 
-3. Prepare your mongoDB database. Alternatively, you could go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to create a cloud database. Then, please follow Step 4 to link this app to cloud DB.
+3. Prepare your local mongoDB database, with a default port `27017`. Alternatively, you could go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to create a cloud database. Afterward, please follow Step 4 to link this app to your DB server.
 
 4. Create Environment configuration file `.env` under your root directory, with the following content completed.
 
