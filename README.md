@@ -21,18 +21,17 @@ This is A node.js based RESTful API project, with multiple functions like User S
 1. Clone Project into your local machine
 
     ```
-    git clone https://github.com/LQF2020/node-restful-shop.git
+    git clone https://github.com/LQF2020/node-restful-api-swagger.git
     ```
 
 2. Go into project folder and install packages.
 
     ```
-    cd node-restful-shop
+    cd node-restful-api-swagger
     npm install
     ```
 
-3. Create your cloud mongoDB account, go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
-   After creating your cloud db server, follow step 4 to link this app to cloud DB.
+3. Prepare your mongoDB database. Alternatively, you could go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to create a cloud database. Then, please follow Step 4 to link this app to cloud DB.
 
 4. Create Environment configuration file `.env` under your root directory, with the following content completed.
 
@@ -43,7 +42,10 @@ This is A node.js based RESTful API project, with multiple functions like User S
     HOST=http://127.0.0.1
     PORT=3000
 
+    // DB for production / development stage
     DB_PROD_URI=%YOUR_PRODUCTION_DB_URI%
+
+    // DB for testing stage, e.g. mongodb://localhost:27017/<your-DB-name>
     DB_TEST_URI=%YOUR_TESTING_DB_URI%
 
     JWT_SECRET=%A_RANDOM_SECRET_FOR_GENERATING_API_ACCESS_TOKEN%
@@ -67,7 +69,7 @@ This is A node.js based RESTful API project, with multiple functions like User S
     npm start
     ```
 
-6. Now, you are ready to play with the restful urls. Just simply open your browser and access http://127.0.0.1:3000/api-docs . If you would like different %HOST% and %PORT%, just change in `.env` file.
+6. Now, you are ready to play with the restful urls. Just simply open your browser and access http://127.0.0.1:3000/api-docs . If you would like different `HOST` and `PORT`, just change in `.env` file.
 
 ## Reference:
 
