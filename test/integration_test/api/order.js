@@ -114,7 +114,7 @@ describe('API - /orders', function () {
     });
     describe('Update order', function () {
         const updateOpts = { quantity: 100 };
-        it('should update order with expected order info', function (done) {
+        it('should update order with as expected', function (done) {
             client
                 .patch(`/orders/${createdOrderID}`)
                 .set('Authorization', `bearer ${BEARER_TEST_TOKEN}`)
@@ -126,7 +126,10 @@ describe('API - /orders', function () {
                     const result = res.body;
                     expect(result).to.have.property('msg');
                     expect(result).to.have.property('request');
+                    done();
                 });
+        });
+        it('should get the order with updated info by orderID', function (done) {
             client
                 .get(`/orders/${createdOrderID}`)
                 .set('Accept', 'application/json')
@@ -153,6 +156,7 @@ describe('API - /orders', function () {
                 );
         });
     });
+
     describe('Delete order', function () {
         it('should delete order with given order ID', function (done) {
             client
@@ -165,7 +169,10 @@ describe('API - /orders', function () {
                     const result = res.body;
                     expect(result).to.have.property('msg');
                     expect(result).to.have.property('request');
+                    done();
                 });
+        });
+        it('should not be able to get the deleted order', function (done) {
             client.get(`/orders/${createdOrderID}`).set('Accept', 'application/json').expect(
                 404,
                 {
