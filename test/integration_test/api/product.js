@@ -113,7 +113,7 @@ describe('API - /products', function () {
     });
     describe('Update product', function () {
         const updateOpts = { name: 'test 2 product', price: 200 };
-        it('should update product with expected product info', function (done) {
+        it('should update product as expected', function (done) {
             client
                 .patch(`/products/${createdProductID}`)
                 .set('Authorization', `bearer ${BEARER_TEST_TOKEN}`)
@@ -125,7 +125,10 @@ describe('API - /products', function () {
                     const result = res.body;
                     expect(result).to.have.property('msg');
                     expect(result).to.have.property('request');
+                    done();
                 });
+        });
+        it('should get correct product with updated info by productID', function (done) {
             client
                 .get(`/products/${createdProductID}`)
                 .set('Accept', 'application/json')
@@ -170,7 +173,11 @@ describe('API - /products', function () {
                     const result = res.body;
                     expect(result).to.have.property('msg');
                     expect(result).to.have.property('request');
+                    done();
                 });
+        });
+
+        it('should not be able to get the deleted product', function (done) {
             client.get(`/products/${createdProductID}`).set('Accept', 'application/json').expect(
                 404,
                 {

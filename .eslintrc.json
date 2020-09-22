@@ -11,7 +11,7 @@
         "no-unused-vars": [
             "warn",
             {
-                "argsIgnorePattern": "next|reject|error"
+                "argsIgnorePattern": "next|reject|error|e"
             }
         ],
         "no-console": "off",
