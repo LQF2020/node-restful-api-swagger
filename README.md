@@ -4,15 +4,14 @@ This is A node.js based RESTful CURD demo project, providing general functions l
 
 # Knowledge Cover
 
--   Swagger & OpenApi 3.0
+-   CURD Operation
+-   SwaggerUI & OpenApi 3.0
 -   Node.js
 -   Express.js
 -   CORS
 -   Restful API
--   MongoDB Atlas
--   Mongoose
--   JWT Authorization
--   OpenApi and swagger
+-   MongoDB & Mongoose
+-   APIs Authorization (JWT)
 -   Docker
 
 # How to use
