@@ -11,7 +11,6 @@ const createToken = (user) => {
         email: user.email
     };
     const config = { expiresIn: '1h' };
-
     return jwt.sign(payLoad, JWT_SECRET, config);
 };
 

@@ -27,7 +27,7 @@ const getVerificationLink = (email) => {
         JWT_EMAIL_SECRET,
         { expiresIn: '1h' }
     );
-    return `${HOST}:${PORT}/user/email-verification?verifyToken=${verifyToken}`;
+    return `http://${HOST}:${PORT}/user/email-verification?verifyToken=${verifyToken}`;
 };
 
 const sendVerificationMail = async (receiverEmail) => {

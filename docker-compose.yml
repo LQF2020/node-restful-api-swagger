@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    networks:
+      - webapp-network
+    restart: always
+    command: '--logpath=/dev/null'
+  myapp:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - webapp-network
+    depends_on:
+      - mongo
+    image: lqf2020/node-restful-api-shop:latest
+    command: test_docker
+
+networks:
+  webapp-network:
+    driver: bridge
