@@ -81,3 +81,53 @@ npm start
 
 Now, you are ready to play with APIs.
 Just simply open your browser and access http://127.0.0.1:3000/api-docs.
+
+# APIs Authorization
+
+## Some APIs are protected by accessToken (JWT), such as:
+
+-   /products (POST)
+-   /products/{productID} (PATCH)
+-   /products/{productID} (DELETE)
+-   /orders (POST)
+-   /orders/{orderID} (PATCH)
+-   /orders/{orderID} (DELETE)
+
+## When calling these protected APIs, make sure you add %BearerToken% in `Authorization` request Header.
+
+```
+Authorization: Bearer <accessToken>
+```
+
+## How to get accessToken ?
+
+When user login sucessfully, an unique accessToken will be returned.
+
+# Available APIs
+
+## User
+
+| APIs         | Method |         Desc          |
+| ------------ | :----: | :-------------------: |
+| /user/signup |  POST  | Register user account |
+| /user/login  |  POST  |      User Login       |
+
+## Product
+
+| APIs                  | Method | Desc                   |
+| --------------------- | ------ | ---------------------- |
+| /products             | GET    | Get all products       |
+| /products             | POST   | Create a new product   |
+| /products/{productID} | GET    | Get a product by ID    |
+| /products/{productID} | PATCH  | Update a product by ID |
+| /products/{productID} | DELETE | Delete a product by ID |
+
+## Order
+
+| APIs              | Method | Desc                 |
+| ----------------- | ------ | -------------------- |
+| /orders           | GET    | Get all orders       |
+| /orders           | POST   | Create a new order   |
+| /orders/{orderID} | GET    | Get a order by ID    |
+| /orders/{orderID} | PATCH  | Update a order by ID |
+| /orders/{orderID} | DELETE | Delete a order by ID |
