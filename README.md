@@ -32,14 +32,16 @@ cd node-restful-api-swagger && npm i
 
 ### Default DB URIs are as follows:
 
+Please make sure mongoDB Server service is installed and running on your localhost:27017.
+
 ```
 DB_PROD_URI=mongodb://localhost:27017/node-restful-shop-prod
 DB_DEV_URI=mongodb://localhost:27017/node-restful-shop-dev
 DB_TEST_URI=mongodb://localhost:27017/node-restful-shop-test
 ```
 
-> Please make sure mongoDB Server service is installed and running on your localhost:27017.
 > Alternatively, if you would like to connect DB remotely, just change DB URIs in `.env` file.
+
 > For more details about MongoDB, click [here](https://www.mongodb.com/).
 
 ## 4. Setting environment file `.env`.
