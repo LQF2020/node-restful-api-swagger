@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const path = require('path');
 const { expect } = require('chai');
 const app = require('../../../app');
 const client = request(app);
@@ -48,8 +50,16 @@ describe('API - /products', function () {
                     expect(createdProduct.imgURL)
                         .to.be.a('string')
                         .and.satisfy((msg) => msg.endsWith('sample_test.jpg'));
+                    const imgUploadedPath = path.join(
+                        __dirname,
+                        '../../../',
+                        'uploads',
+                        createdProduct.imgURL.split('/').pop()
+                    );
+                    expect(fs.existsSync(imgUploadedPath)).equal(true);
                     expect(createdProduct).to.have.property('request');
                     createdProductID = createdProduct._id;
+                    fs.unlinkSync(imgUploadedPath);
                     done();
                 });
         });
