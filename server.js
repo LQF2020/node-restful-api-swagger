@@ -18,4 +18,6 @@ dbConn()
     .catch((err) => {
         console.error('Error caught:');
         console.error(err);
+        console.log('Program exiting.');
+        process.exit(0);
     });
