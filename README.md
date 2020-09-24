@@ -114,20 +114,20 @@ When user login sucessfully, an unique accessToken will be returned.
 
 ## Product
 
-| APIs                  | Method | Desc                   |
-| --------------------- | ------ | ---------------------- |
-| /products             | GET    | Get all products       |
-| /products             | POST   | Create a new product   |
-| /products/{productID} | GET    | Get a product by ID    |
-| /products/{productID} | PATCH  | Update a product by ID |
-| /products/{productID} | DELETE | Delete a product by ID |
+| APIs                  | Method | Desc                   | AccessToken |
+| --------------------- | ------ | ---------------------- | ----------- |
+| /products             | GET    | Get all products       |             |
+| /products             | POST   | Create a new product   | Required    |
+| /products/{productID} | GET    | Get a product by ID    |             |
+| /products/{productID} | PATCH  | Update a product by ID | Required    |
+| /products/{productID} | DELETE | Delete a product by ID | Required    |
 
 ## Order
 
-| APIs              | Method | Desc                 |
-| ----------------- | ------ | -------------------- |
-| /orders           | GET    | Get all orders       |
-| /orders           | POST   | Create a new order   |
-| /orders/{orderID} | GET    | Get a order by ID    |
-| /orders/{orderID} | PATCH  | Update a order by ID |
-| /orders/{orderID} | DELETE | Delete a order by ID |
+| APIs              | Method | Desc                 | AccessToken |
+| ----------------- | ------ | -------------------- | ----------- |
+| /orders           | GET    | Get all orders       |             |
+| /orders           | POST   | Create a new order   | Required    |
+| /orders/{orderID} | GET    | Get a order by ID    |             |
+| /orders/{orderID} | PATCH  | Update a order by ID | Required    |
+| /orders/{orderID} | DELETE | Delete a order by ID | Required    |
