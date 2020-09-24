@@ -15,10 +15,11 @@ const transporter = nodemailer.createTransport({
     port: SENDER_EMAIL_PORT,
     secure: true, // true for 465, false for other ports
     auth: {
-        user: SENDER_EMAIL_ID, // generated ethereal user
-        pass: SENDER_EMAIL_PASSWORD // generated ethereal password
+        user: SENDER_EMAIL_ID, // sender email address
+        pass: SENDER_EMAIL_PASSWORD // sender email password
     }
 });
+
 const getVerificationLink = (email) => {
     const verifyToken = jwt.sign(
         {
@@ -27,7 +28,7 @@ const getVerificationLink = (email) => {
         JWT_EMAIL_SECRET,
         { expiresIn: '1h' }
     );
-    return `${HOST}:${PORT}/user/email-verification?verifyToken=${verifyToken}`;
+    return `http://${HOST}:${PORT}/user/email-verification?verifyToken=${verifyToken}`;
 };
 
 const sendVerificationMail = async (receiverEmail) => {
@@ -49,7 +50,7 @@ const sendVerificationMail = async (receiverEmail) => {
             // console.log('email failed to send');
         }
     } catch (error) {
-        throw new Error('Verification mail sent failed.');
+        throw new Error(`Verification mail sent failed. Reason: ${error}`);
     }
 };
 

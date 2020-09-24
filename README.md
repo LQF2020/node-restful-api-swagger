@@ -1,78 +1,137 @@
 # Node-Restful-API-Swagger
 
-## Abstract
+This is A node.js based RESTful CURD demo project, providing general functions like User Signup and Login, APIs Authorization , using RESTful apis to create/update/get/delete products and orders.
 
-This is A node.js based RESTful API project, with multiple functions like User Signup and Login, generate Api accessToken, create/update/get/delete products and orders.
+# Knowledge Cover
 
-## Knowledge Cover
-
--   Swagger & OpenApi 3.0
+-   CURD Operation
+-   SwaggerUI & OpenApi 3.0
 -   Node.js
 -   Express.js
 -   CORS
 -   Restful API
--   MongoDB Atlas
--   Mongoose
--   JWT Authorization
--   OpenApi and swagger
+-   MongoDB & Mongoose
+-   APIs Authorization (JWT)
+-   Docker
 
-## How to use
+# How to use
 
-1. Clone Project into your local machine
+## 1. Clone Project into your local machine
 
-    ```
-    git clone https://github.com/LQF2020/node-restful-api-swagger.git
-    ```
+```
+git clone https://github.com/LQF2020/node-restful-api-swagger.git
+```
 
-2. Go into project folder and install packages.
+## 2. Go into project folder and install project dependencies.
 
-    ```
-    cd node-restful-api-swagger
-    npm install
-    ```
+```
+cd node-restful-api-swagger && npm i
+```
 
-3. Prepare your local mongoDB database, with a default port `27017`. Alternatively, you could go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to create a cloud database. Afterward, please follow Step 4 to link this app to your DB server.
+## 3. Connecting to Database
 
-4. Create Environment configuration file `.env` under your root directory, with the following content completed.
+### Default DB URIs are as follows:
 
-    ```
-    PROJECT_OWNER=%YOUR_NAME%
-    PROJECT_OWNER_EMAIL=%YOUR_EMAIL_ADDRESS%
+Please make sure mongoDB Server service is installed and running on your localhost:27017.
 
-    HOST=http://127.0.0.1
-    PORT=3000
+```
+DB_PROD_URI=mongodb://localhost:27017/node-restful-shop-prod
+DB_DEV_URI=mongodb://localhost:27017/node-restful-shop-dev
+DB_TEST_URI=mongodb://localhost:27017/node-restful-shop-test
+```
 
-    // DB for prod / dev stage, e.g. mongodb://localhost:27017/<your-prod-DB-name>
-    DB_PROD_URI=%YOUR_PRODUCTION_DB_URI%
+> Alternatively, if you would like to connect DB remotely, just change DB URIs in `.env` file.
 
-    // DB for testing stage, e.g. mongodb://localhost:27017/<your-test-DB-name>
-    DB_TEST_URI=%YOUR_TESTING_DB_URI%
+> For more details about MongoDB, click [here](https://www.mongodb.com/).
 
-    // A random string used for generating API accessToken
-    JWT_SECRET=%some_secrets%
+## 4. Setting environment file `.env`.
 
-    // A random string used for generating email verification accessToken
-    JWT_EMAIL_SECRET=%some_secrets%
+Simply copy `.env.simple` as `.env`, then edit it based on your need.
 
-    // if set to 'true', user will receive verification email when sign up a new account
-    ENABLE_EMAIL_ADDRESS_VERIFICATION=false
+```
+# App config
+PROJECT_OWNER=%YOUR_NAME%
+PROJECT_OWNER_EMAIL=%YOUR_EMAIL_ADDRESS%
+HOST=127.0.0.1
+PORT=3000
 
-    // if set "ENABLE_EMAIL_ADDRESS_VERIFICATION=true", please fill up the following to init Email Sender
-    SENDER_EMAIL_HOST=%SENDER_EMAIL_HOST%
-    SENDER_EMAIL_PORT=%SENDER_EMAIL_PORT%
-    SENDER_EMAIL_ID=%SENDER_EMAIL%
-    SENDER_EMAIL_PASSWORD=%SENDER_EMAIL_PASSWORD%
+# Default DB URI
+DB_PROD_URI=mongodb://localhost:27017/node-restful-shop-prod
+DB_DEV_URI=mongodb://localhost:27017/node-restful-shop-dev
+DB_TEST_URI=mongodb://localhost:27017/node-restful-shop-test
 
-    ```
+# Random sercet used for generating API accessToken
+JWT_SECRET=%some_secrets%
+JWT_EMAIL_SECRET=%some_secrets%
 
-5. Start project
+# Set it "true", an account activation link will be sent to user's email after sign up.
+ENABLE_EMAIL_ADDRESS_VERIFICATION=false
 
-    ```
-    npm start
-    ```
+# if "ENABLE_EMAIL_ADDRESS_VERIFICATION=true", you must provide details for setting up Email sender server.
+SENDER_EMAIL_HOST=%SENDER_EMAIL_HOST%
+SENDER_EMAIL_PORT=%SENDER_EMAIL_PORT%
+SENDER_EMAIL_ID=%SENDER_EMAIL%
+SENDER_EMAIL_PASSWORD=%SENDER_EMAIL_PASSWORD%
 
-6. Now, you are ready to play with the restful urls. Just simply open your browser and access http://127.0.0.1:3000/api-docs . If you would like different `HOST` and `PORT`, just change in `.env` file.
+```
 
-## Reference:
+## 5. Start project
 
-This project is created for self-learning purpose, inspired by [AcadeMind's RESTful Api with Node.js Course](https://www.youtube.com/watch?v=0oXYLzuucwE&list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q&index=1).
+```
+npm start
+```
+
+## 6. Test with APIs
+
+Now, you are ready to play with APIs.
+Just simply open your browser and access http://127.0.0.1:3000/api-docs.
+
+# APIs Authorization
+
+## Some APIs are protected by accessToken (JWT), such as:
+
+-   /products (POST)
+-   /products/{productID} (PATCH)
+-   /products/{productID} (DELETE)
+-   /orders (POST)
+-   /orders/{orderID} (PATCH)
+-   /orders/{orderID} (DELETE)
+
+## When calling these protected APIs, make sure you add %BearerToken% in `Authorization` request Header.
+
+```
+Authorization: Bearer <accessToken>
+```
+
+## How to get accessToken ?
+
+When user login sucessfully, an unique accessToken will be returned.
+
+# Available APIs
+
+## User
+
+| APIs         | Method |         Desc          |
+| ------------ | :----: | :-------------------: |
+| /user/signup |  POST  | Register user account |
+| /user/login  |  POST  |      User Login       |
+
+## Product
+
+| APIs                  | Method | Desc                   | AccessToken |
+| --------------------- | ------ | ---------------------- | ----------- |
+| /products             | GET    | Get all products       |             |
+| /products             | POST   | Create a new product   | Required    |
+| /products/{productID} | GET    | Get a product by ID    |             |
+| /products/{productID} | PATCH  | Update a product by ID | Required    |
+| /products/{productID} | DELETE | Delete a product by ID | Required    |
+
+## Order
+
+| APIs              | Method | Desc                 | AccessToken |
+| ----------------- | ------ | -------------------- | ----------- |
+| /orders           | GET    | Get all orders       |             |
+| /orders           | POST   | Create a new order   | Required    |
+| /orders/{orderID} | GET    | Get a order by ID    |             |
+| /orders/{orderID} | PATCH  | Update a order by ID | Required    |
+| /orders/{orderID} | DELETE | Delete a order by ID | Required    |

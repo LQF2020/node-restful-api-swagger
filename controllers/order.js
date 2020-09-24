@@ -17,7 +17,7 @@ const orderController = {
                             quantity: item.quantity,
                             request: {
                                 type: 'GET',
-                                url: `${process.env.HOST}:${process.env.PORT}/orders/${item._id}`
+                                url: `http://${process.env.HOST}:${process.env.PORT}/orders/${item._id}`
                             }
                         };
                     })
@@ -63,7 +63,7 @@ const orderController = {
                                     quantity: item.quantity,
                                     request: {
                                         type: 'GET',
-                                        url: `${process.env.HOST}:${process.env.PORT}/orders/${item._id}`
+                                        url: `http://${process.env.HOST}:${process.env.PORT}/orders/${item._id}`
                                     }
                                 }
                             });
@@ -86,7 +86,7 @@ const orderController = {
                         msg: 'Order updated successfully.',
                         request: {
                             type: 'GET',
-                            url: `${process.env.HOST}:${process.env.PORT}/orders/${orderID}`
+                            url: `http://${process.env.HOST}:${process.env.PORT}/orders/${orderID}`
                         }
                     });
                 } else if (result.n === 1) {
@@ -113,7 +113,7 @@ const orderController = {
                         msg: 'Order deleted successfully.',
                         request: {
                             type: 'GET',
-                            url: `${process.env.HOST}:${process.env.PORT}/orders`
+                            url: `http://${process.env.HOST}:${process.env.PORT}/orders`
                         }
                     });
                 } else {

@@ -17,7 +17,7 @@ const productController = {
                             imgURL: item.imgURL,
                             request: {
                                 type: 'GET',
-                                url: `${process.env.HOST}:${process.env.PORT}/products/${item._id}`
+                                url: `http://${process.env.HOST}:${process.env.PORT}/products/${item._id}`
                             }
                         };
                     })
@@ -48,7 +48,7 @@ const productController = {
             _id: new mongoose.Types.ObjectId(),
             name: req.body.name,
             price: req.body.price,
-            imgURL: `${process.env.HOST}:${process.env.PORT}/uploads/${req.file.filename}`
+            imgURL: `http://${process.env.HOST}:${process.env.PORT}/uploads/${req.file.filename}`
         });
 
         product
@@ -63,7 +63,7 @@ const productController = {
                         imgURL: item.imgURL,
                         request: {
                             type: 'GET',
-                            url: `${process.env.HOST}:${process.env.PORT}/products/${item._id}`
+                            url: `http://${process.env.HOST}:${process.env.PORT}/products/${item._id}`
                         }
                     }
                 });
@@ -81,7 +81,7 @@ const productController = {
                         msg: 'Product updated successfully.',
                         request: {
                             type: 'GET',
-                            url: `${process.env.HOST}:${process.env.PORT}/products/${productID}`
+                            url: `http://${process.env.HOST}:${process.env.PORT}/products/${productID}`
                         }
                     });
                 } else if (result.n === 1) {
@@ -108,7 +108,7 @@ const productController = {
                         msg: 'Product deleted successfully.',
                         request: {
                             type: 'GET',
-                            url: `${process.env.HOST}:${process.env.PORT}/products`
+                            url: `http://${process.env.HOST}:${process.env.PORT}/products`
                         }
                     });
                 } else {
