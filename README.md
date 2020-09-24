@@ -75,13 +75,13 @@ SENDER_EMAIL_PASSWORD=%SENDER_EMAIL_PASSWORD%
 
 ```
 
-## Start project
+## 5. Start project
 
 ```
 npm start
 ```
 
-## Test with APIs
+## 6. Test with APIs
 
 Now, you are ready to play with APIs.
 Just simply open your browser and access http://127.0.0.1:3000/api-docs.
