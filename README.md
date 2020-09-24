@@ -28,9 +28,9 @@ git clone https://github.com/LQF2020/node-restful-api-swagger.git
 cd node-restful-api-swagger && npm i
 ```
 
-## 3. Make sure mongoDB Server service is installed and running on localhost:27017.
+## 3. Connecting to Database
 
-Default DB URIs as follows, feel feel to change it based on your need.
+### Default DB URIs are as follows:
 
 ```
 DB_PROD_URI=mongodb://localhost:27017/node-restful-shop-prod
@@ -38,7 +38,13 @@ DB_DEV_URI=mongodb://localhost:27017/node-restful-shop-dev
 DB_TEST_URI=mongodb://localhost:27017/node-restful-shop-test
 ```
 
-For more details about MongoDB, click [here](https://www.mongodb.com/).
+Please make sure mongoDB Server service is installed and running on your localhost:27017.
+
+Alternatively, if you would like to connect DB remotely, just change DB URIs in `.env` file.
+
+> For more details about MongoDB, click [here](https://www.mongodb.com/).
+
+Default DB URIs as follows, feel feel to change it based on your need.
 
 ## 4. Setting environment file `.env`.
 
