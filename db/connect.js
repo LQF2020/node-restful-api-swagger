@@ -23,6 +23,7 @@ const dbConn = async () => {
             throw new Error(`DB running error: ${err}`);
         });
         console.log('DB is connected!');
+        return;
     } catch (err) {
         throw new Error(`DB connection error: ${err}`);
     }

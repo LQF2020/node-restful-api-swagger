@@ -7,9 +7,12 @@ services:
     restart: always
     command: '--logpath=/dev/null'
   myapp:
+    image: node-restful-api-shop:latest
     build:
       context: .
       dockerfile: ./Dockerfile
+    ports:
+       - "127.0.0.1:3000:3000"
     environment:
       - DB_PROD_URI=mongodb://mongo:27017/node-restful-prod
       - DB_DEV_URI=mongodb://mongo:27017/node-restful-dev
@@ -18,8 +21,8 @@ services:
       - webapp-network
     depends_on:
       - mongo
-    image: node-restful-api-shop:latest
-    command: test_docker
+  
+    command: ["./wait-for-it.sh", "mongo:27017", "--", "npm", "run", "start"]
 
 networks:
   webapp-network:

@@ -10,9 +10,10 @@ dbConn()
     .then(() => {
         server.listen(port, host, (err) => {
             if (err) {
-                return console.error(err);
+                console.log(err);
+                return;
             }
-            return console.log(`Server listening on http://${host}:${port}/api-docs`);
+            console.log(`Server listening on http://${host}:${port}/api-docs`);
         });
     })
     .catch((err) => {
