@@ -8,7 +8,7 @@ const server = http.createServer(app);
 
 dbConn()
     .then(() => {
-        server.listen(port, host, (err) => {
+        server.listen(port, (err) => {
             if (err) {
                 console.log(err);
                 return;
