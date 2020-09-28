@@ -86,7 +86,7 @@ npm start
 Now, you are ready to play with APIs.
 Just simply open your browser and access http://127.0.0.1:3000/api-docs.
 
-# Run by Docker (Option 2)
+# Docker
 
 > Docker need to be installed in your OS.
 > To install Docker, please click [here](https://docs.docker.com/get-docker/) .
