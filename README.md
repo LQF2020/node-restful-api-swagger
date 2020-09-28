@@ -88,18 +88,11 @@ Just simply open your browser and access http://127.0.0.1:3000/api-docs.
 
 # Docker
 
-> Docker need to be installed in your OS.
-> To install Docker, please click [here](https://docs.docker.com/get-docker/) .
+> #### Docker need to be installed in your OS. To install Docker, please click [here](https://docs.docker.com/get-docker/) .
 
-> ### Please make sure you have followed Step 1 ~ Step 4 as above. Then,
+> #### Please make sure you have followed Step 1 ~ Step 4 as above.
 
-## 5. Redirect to root path of project.
-
-```
-cd node-restful-api-swagger
-```
-
-## 6. Start docker-compose service
+### Under the root path of project, start Docker service
 
 ```
 docker-compose up
