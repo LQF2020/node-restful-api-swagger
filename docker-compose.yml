@@ -6,6 +6,8 @@ services:
       - webapp-network
     restart: always
     command: '--logpath=/dev/null'
+    volumes:
+        - app-db-volume:/data/db
   myapp:
     image: node-restful-api-shop:latest
     build:
@@ -27,3 +29,6 @@ services:
 networks:
   webapp-network:
     driver: bridge
+
+volumes:
+    app-db-volume:
