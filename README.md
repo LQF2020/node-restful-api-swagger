@@ -81,9 +81,9 @@ SENDER_EMAIL_PASSWORD=%SENDER_EMAIL_PASSWORD%
 npm start
 ```
 
-## 6. Test with APIs
+## 6. Play with APIs now !
 
-Now, you are ready to play with APIs.
+Now, you are ready to test all APIs.
 Just simply open your browser and access http://127.0.0.1:3000/api-docs.
 
 # Docker
