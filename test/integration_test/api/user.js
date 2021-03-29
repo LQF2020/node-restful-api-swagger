@@ -26,7 +26,7 @@ describe('API - /user', function () {
                     201,
                     {
                         userID: signupInfo.email,
-                        status: true
+                        isEmailVerified: true
                     },
                     done
                 );

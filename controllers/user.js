@@ -41,7 +41,7 @@ const userController = {
                     if (createdUser) {
                         const response = {
                             userID: req.body.email,
-                            status: !shouldVerifyEmail()
+                            isEmailVerified: !shouldVerifyEmail()
                         };
                         if (shouldVerifyEmail())
                             response.msg = `A verification email has been sent to ${req.body.email}`;
