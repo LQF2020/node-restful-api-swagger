@@ -46,7 +46,7 @@ DB_TEST_URI=mongodb://localhost:27017/node-restful-shop-test
 
 ## 4. Setting environment file `.env`.
 
-Simply copy `.env.simple` as `.env`, then edit it based on your need.
+Simply copy `.env.sample` as `.env`, then edit it based on your need.
 
 ```
 # App config
